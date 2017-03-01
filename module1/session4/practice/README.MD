@@ -1,0 +1,50 @@
+# Practice: BIOCHAM 
+
+
+
+## 1. 
+
+
+
+```c
+MA (K1) for S + E => ES.
+MA (K2) for ES => E + S.
+MA (K3) for ES => EP.
+MA (K4) for EP => ES.
+MA (K5) for EP => P + E.
+MA (K6) for P + E => EP.
+parameter(K1, 1).
+parameter(K2, 1).
+parameter(K3, 1).
+parameter(K4, 1).
+parameter(K5, 1).
+parameter(K6, 1).
+present(S, 1).
+present(E, 1).
+```
+
+
+
+
+
+## 2. 
+
+
+
+```
+MA (K1) for S + E => ES.
+MA (K2) for ES => E + S.
+MA (K3) for ES => P+E.
+MA (K4) for EP => P+E.
+MA (K5) for P + E => EP.
+MA (K6) for EP => S + E.
+parameter(K1, 1).
+parameter(K2, 1).
+parameter(K3, 1).
+parameter(K4, 1).
+parameter(K5, 1).
+parameter(K6, 1).
+present(S, 1).
+present(E, 1).
+```
+
