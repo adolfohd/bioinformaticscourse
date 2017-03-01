@@ -1,0 +1,47 @@
+BioNetGen version 2.2.6
+Reading from file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/MMexact.bngl (level 0)
+Read 7 parameters.
+Read 2 molecule types.
+Read 2 species.
+Read 3 observable(s).
+Read 2 reaction rule(s).
+ACTION: generate_network( MMexact )
+Iteration   0:     2 species      0 rxns  0.00e+00 CPU s
+Iteration   1:     3 species      1 rxns  0.00e+00 CPU s
+Iteration   2:     4 species      3 rxns  0.00e+00 CPU s
+Iteration   3:     4 species      3 rxns  0.00e+00 CPU s
+Cumulative CPU time for each rule
+Rule   1:     2 reactions 0.00e+00 CPU s 0.00e+00 CPU s/rxn
+Rule   2:     1 reactions 0.00e+00 CPU s 0.00e+00 CPU s/rxn
+Total   :     3 reactions 0.00e+00 CPU s 0.00e+00 CPU s/rxn
+Wrote network in net format to /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.net.
+CPU TIME: generate_network 0.00 s.
+Executing visualize() command.
+Wrote rule(s) with graph operations in GML format to /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact_ruleviz_operation.gml.
+CPU TIME: visualize 0.00 s.
+ACTION: simulate( method=>"cvode" )
+Network simulation using cvode
+WARNING: writeFile(): Overwriting existing file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.net.
+Wrote network in net format to /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.net.
+Running run_network on fito-laptop-ubuntu
+full command: /opt/Bionetgen/RuleBender-2.1.0.8-lin64/BioNetGen-2.2.6/bin/run_network -o /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact -p cvode -a 1e-08 -r 1e-08 --cdat 1 --fdat 0 -g /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.net /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.net 20 1000
+[simulation PID is: 19403]
+run_network 3.0
+Read 7 parameters
+Read 4 species
+Read 3 group(s) from /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.net
+Read 0 function(s)
+Read 3 reaction(s)
+3 reaction(s) have nonzero rate
+Initialization took 0.00 CPU seconds
+Propagating with cvode using dense LU
+Time course of concentrations written to file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.cdat.
+Time course of groups written to file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.gdat.
+Propagation took 2.00e-02 CPU seconds
+Program times:  0.02 CPU s 0.00 clock s 
+Updating species concentrations from /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMexact/2017-03-01_16-37-32/MMexact.cdat
+CPU TIME: simulate 0.02 s.
+Finished processing file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/MMexact.bngl.
+CPU TIME: total 0.03 s.
+
+

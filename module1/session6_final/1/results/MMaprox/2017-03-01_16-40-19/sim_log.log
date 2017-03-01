@@ -1,0 +1,50 @@
+BioNetGen version 2.2.6
+Reading from file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/MMaprox.bngl (level 0)
+Read 8 parameters.
+Read 2 molecule types.
+Read 2 species.
+Read 3 observable(s).
+Read 1 functions.
+Read 1 reaction rule(s).
+ACTION: generate_network( MMaprox )
+Iteration   0:     2 species      0 rxns  0.00e+00 CPU s
+Iteration   1:     3 species      1 rxns  0.00e+00 CPU s
+Iteration   2:     3 species      1 rxns  0.00e+00 CPU s
+Cumulative CPU time for each rule
+Rule   1:     1 reactions 0.00e+00 CPU s 0.00e+00 CPU s/rxn
+Total   :     1 reactions 0.00e+00 CPU s 0.00e+00 CPU s/rxn
+Wrote network in net format to /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.net.
+CPU TIME: generate_network 0.00 s.
+Executing visualize() command.
+Wrote rule(s) with graph operations in GML format to /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox_ruleviz_operation.gml.
+CPU TIME: visualize 0.00 s.
+Saved current species concentrations with label "DEFAULT"
+CPU TIME: saveConcentrations 0.00 s.
+ACTION: simulate( method=>"cvode" )
+Network simulation using cvode
+WARNING: writeFile(): Overwriting existing file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.net.
+Wrote network in net format to /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.net.
+Running run_network on fito-laptop-ubuntu
+full command: /opt/Bionetgen/RuleBender-2.1.0.8-lin64/BioNetGen-2.2.6/bin/run_network -o /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox -p cvode -a 1e-08 -r 1e-08 --cdat 1 --fdat 1 -g /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.net /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.net 20 1000
+[simulation PID is: 19643]
+run_network 3.0
+Activating functions output (to .gdat)
+Read 8 parameters
+Read 3 species
+Read 3 group(s) from /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.net
+Read 2 function(s)
+Read 1 reaction(s)
+1 reaction(s) have nonzero rate
+Initialization took 0.00 CPU seconds
+Propagating with cvode using dense LU
+Time course of concentrations written to file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.cdat.
+Time course of groups written to file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.gdat.
+Time course of functions written to file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.gdat.
+Propagation took 3.00e-02 CPU seconds
+Program times:  0.03 CPU s 0.00 clock s 
+Updating species concentrations from /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/results/MMaprox/2017-03-01_16-40-19/MMaprox.cdat
+CPU TIME: simulate_ode 0.04 s.
+Finished processing file /media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module1/session6_final/1/MMaprox.bngl.
+CPU TIME: total 0.04 s.
+
+

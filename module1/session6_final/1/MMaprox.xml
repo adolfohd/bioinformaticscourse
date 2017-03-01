@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by BioNetGen 2.2.6  -->
+<sbml xmlns="http://www.sbml.org/sbml/level3" level="3" version="1">
+  <model id="MMaprox">
+    <ListOfParameters>
+      <Parameter id="V" type="Constant" value="1"/>
+      <Parameter id="NaV" type="Constant" value="602"/>
+      <Parameter id="kf" type="Constant" value="0.0016611296"/>
+      <Parameter id="kr" type="Constant" value="0.1"/>
+      <Parameter id="kcat" type="Constant" value="0.01"/>
+      <Parameter id="Km" type="Constant" value="66.22"/>
+      <Parameter id="E0" type="Constant" value="6.02"/>
+      <Parameter id="S0" type="Constant" value="602"/>
+    </ListOfParameters>
+    <ListOfMoleculeTypes>
+      <MoleculeType id="E">
+        <ListOfComponentTypes>
+          <ComponentType id="s"/>
+        </ListOfComponentTypes>
+      </MoleculeType>
+      <MoleculeType id="S">
+        <ListOfComponentTypes>
+          <ComponentType id="Y">
+            <ListOfAllowedStates>
+              <AllowedState id="0"/>
+              <AllowedState id="P"/>
+            </ListOfAllowedStates>
+          </ComponentType>
+        </ListOfComponentTypes>
+      </MoleculeType>
+    </ListOfMoleculeTypes>
+    <ListOfCompartments>
+    </ListOfCompartments>
+    <ListOfSpecies>
+      <Species id="S1"  concentration="E0" name="E(s)">
+        <ListOfMolecules>
+          <Molecule id="S1_M1" name="E">
+            <ListOfComponents>
+              <Component id="S1_M1_C1" name="s" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+      <Species id="S2"  concentration="S0" name="S(Y~0)">
+        <ListOfMolecules>
+          <Molecule id="S2_M1" name="S">
+            <ListOfComponents>
+              <Component id="S2_M1_C1" name="Y" state="0" numberOfBonds="0"/>
+            </ListOfComponents>
+          </Molecule>
+        </ListOfMolecules>
+      </Species>
+    </ListOfSpecies>
+    <ListOfReactionRules>
+      <ReactionRule id="RR1" name="ES_MM" symmetry_factor="1">
+        <ListOfReactantPatterns>
+          <ReactantPattern id="RR1_RP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP1_M1" name="E">
+                <ListOfComponents>
+                  <Component id="RR1_RP1_M1_C1" name="s" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+          <ReactantPattern id="RR1_RP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_RP2_M1" name="S">
+                <ListOfComponents>
+                  <Component id="RR1_RP2_M1_C1" name="Y" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ReactantPattern>
+        </ListOfReactantPatterns>
+        <ListOfProductPatterns>
+          <ProductPattern id="RR1_PP1">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP1_M1" name="E">
+                <ListOfComponents>
+                  <Component id="RR1_PP1_M1_C1" name="s" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+          <ProductPattern id="RR1_PP2">
+            <ListOfMolecules>
+              <Molecule id="RR1_PP2_M1" name="S">
+                <ListOfComponents>
+                  <Component id="RR1_PP2_M1_C1" name="Y" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </ProductPattern>
+        </ListOfProductPatterns>
+        <RateLaw id="RR1_RateLaw" type="Function" name="_rateLaw1" totalrate="0">
+          <ListOfArguments>
+          </ListOfArguments>
+        </RateLaw>
+        <Map>
+          <MapItem sourceID="RR1_RP1_M1" targetID="RR1_PP1_M1"/>
+          <MapItem sourceID="RR1_RP1_M1_C1" targetID="RR1_PP1_M1_C1"/>
+          <MapItem sourceID="RR1_RP2_M1" targetID="RR1_PP2_M1"/>
+          <MapItem sourceID="RR1_RP2_M1_C1" targetID="RR1_PP2_M1_C1"/>
+        </Map>
+        <ListOfOperations>
+          <StateChange site="RR1_RP2_M1_C1" finalState="P"/>
+        </ListOfOperations>
+      </ReactionRule>
+    </ListOfReactionRules>
+    <ListOfObservables>
+      <Observable id="O1" name="Su" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O1_P1">
+            <ListOfMolecules>
+              <Molecule id="O1_P1_M1" name="S">
+                <ListOfComponents>
+                  <Component id="O1_P1_M1_C1" name="Y" state="0" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O2" name="Sp" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O2_P1">
+            <ListOfMolecules>
+              <Molecule id="O2_P1_M1" name="S">
+                <ListOfComponents>
+                  <Component id="O2_P1_M1_C1" name="Y" state="P" numberOfBonds="0"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+      <Observable id="O3" name="ES" type="Molecules">
+        <ListOfPatterns>
+          <Pattern id="O3_P1">
+            <ListOfMolecules>
+              <Molecule id="O3_P1_M1" name="E">
+                <ListOfComponents>
+                  <Component id="O3_P1_M1_C1" name="s" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+              <Molecule id="O3_P1_M2" name="S">
+                <ListOfComponents>
+                  <Component id="O3_P1_M2_C1" name="Y" numberOfBonds="1"/>
+                </ListOfComponents>
+              </Molecule>
+            </ListOfMolecules>
+            <ListOfBonds>
+              <Bond id="O3_P1_B1" site1="O3_P1_M1_C1" site2="O3_P1_M2_C1"/>
+            </ListOfBonds>
+          </Pattern>
+        </ListOfPatterns>
+      </Observable>
+    </ListOfObservables>
+    <ListOfFunctions>
+      <Function id="MMrate">
+        <ListOfReferences>
+          <Reference name="kcat" type="Constant"/>
+          <Reference name="E0" type="ConstantExpression"/>
+          <Reference name="Km" type="ConstantExpression"/>
+          <Reference name="Su" type="Observable"/>
+        </ListOfReferences>
+        <Expression> ((kcat*E0)*Su)/(Km+Su) </Expression>
+      </Function>
+      <Function id="_rateLaw1">
+        <ListOfReferences>
+          <Reference name="kcat" type="Constant"/>
+          <Reference name="Km" type="ConstantExpression"/>
+          <Reference name="Su" type="Observable"/>
+        </ListOfReferences>
+        <Expression> kcat/(Km+Su) </Expression>
+      </Function>
+    </ListOfFunctions>
+  </model>
+</sbml>
