@@ -4,6 +4,22 @@
 
 ## 1. Reversible enzyme kinetics
 
+
+
+The kinetics for this example are described by the equations:
+
+
+
+$S+E \array{ k_1 \\ \longleftrightarrow  \\ k_2 } ES$
+
+$ES \array{ k_3 \\ \longleftrightarrow  \\ k_4 } EP $
+
+
+
+$EP \array{ k_5 \\ \longleftrightarrow  \\ k_6 } P+E $
+
+
+
 The designed code for the proposed dynamics is:
 
 ```c
@@ -68,6 +84,18 @@ The boolean simulation was ran during 30 transitions, and its plot is shown on t
 
 
 
+The reaction equations are:
+
+$S+E \array{ k_1 \\ \longleftrightarrow  \\ k_2 } ES$
+
+$ES \array{ k_3 \\ \longrightarrow  } P+E $
+
+$P+E \array{ k_5 \\ \longleftrightarrow  \\ k_4 } EP $
+
+$EP \array{ k_6 \\ \longrightarrow  } S+E $
+
+And the respective Biocham code is:
+
 ```
 MA (K1) for S + E => ES.
 MA (K2) for ES => E + S.
@@ -111,11 +139,25 @@ present(E, 1).
 
 ![][irreTau]
 
+In a similar way than the *reversible enzyme kinetics* example, all curves in both stocastic simulations, for the *irreversible enzyme kinetics* example, oscillate aroung the ODE plot.
+
+
+
 #### Boolean
 
-
+The boolean simulation is shown next:
 
 ![][irreBoolean]
+
+
+
+## Comparisson
+
+$a9=\frac{2}{3}$  
+
+
+
+
 
 
 [rever]: images/biocham_reversible1.PNG
