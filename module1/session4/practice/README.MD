@@ -26,10 +26,11 @@ And put inside Biocham:
 
 ![][rever]
 
-
 ### Simulations
 
-When the code is run with ODE using the Rosenbrok algorithm, it generates a plot like the one shown next:
+#### ODE 
+
+When the code is run with ODE simulator, using the Rosenbrok algorithm, it generates a plot like the one shown next:
 
 ![][reverrosen]
 
@@ -38,6 +39,30 @@ Now, selecting the Runge-Kutta algorithm for solving the ODE system:
 ![][reverrunge]
 
 Although it is not directly visible, the generated graphics through both methods almost exactly overlap. This tells us that, at this level of complexity and scale, both methods behave practically the same.
+
+#### Stocastic
+
+
+
+The next plot was generated selecting the Gillespie algorithm:
+
+![][reveGillespie]
+
+
+
+On the other hand, the Tau-Lipping algorithm was selected to get the next figure:
+
+![][reveTau]
+
+
+
+While the results of ODE and stocastic simulations are apparently different, both Gillespie and Tau-Lipping curves oscillate around the obtained ODE plots, and present similar steady states for the different observable variables.
+
+#### Boolean
+
+The boolean simulation was ran during 30 transitions, and its plot is shown on the next figure:
+
+![][reveBoolean]
 
 ## 2. Coupled irreversible enzyme kinetics
 
@@ -60,10 +85,50 @@ present(S, 1).
 present(E, 1).
 ```
 
+
+
 ![][irrever]
+
+### Simulations
+
+
+
+#### ODE
+
+![][irreODE]
+
+#### Stocastic
+
+
+
+![][irreGillespie]
+
+
+
+
+
+
+
+![][irreTau]
+
+#### Boolean
+
+
+
+![][irreBoolean]
 
 
 [rever]: images/biocham_reversible1.PNG
 [reverrosen]: images/reversibleRosenbrok1.png
 [reverrunge]: images/reversibleRunge1.png
+[reveGillespie]: images/reveGillespie.png
+[reveTau]: images/reveTau.png
+[reveBoolean]: images/reveBoolean.png
+
+
+
 [irrever]: images/biocham_irreversible1.PNG
+[irreODE]: images/irreODE.png
+[irreGillespie]: images/irreGillespie.png
+[irreTau]: images/irreTau.png
+[irreBoolean]: images/irreBoolean.png
