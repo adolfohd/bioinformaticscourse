@@ -2,6 +2,9 @@
 
 # The Complexity of Cell-Biological Systems: A review
 
+> **Author**: Adolfo Hoyos Díaz, 
+Pontificia Universidad Javeriana, Cali.
+
 This essay is a review of the paper [Gabbay, Dov, et al. "The Complexity of Cell-Biological Systems."]. I'm going through the proposed paper and will highlight the, in my opinion, most relevant concepts, and the ones I find new to my experience.
 
 ## Inherent complexity

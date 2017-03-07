@@ -1,0 +1,212 @@
+<html>
+ <body>
+  <h1 id="the-complexity-of-cell-biological-systems-a-review">
+   The Complexity of Cell-Biological Systems: A review
+  </h1>
+  <p>
+   This essay is a review of the paper [Gabbay, Dov, et al. “The Complexity of Cell-Biological Systems.”]. I’m going through the proposed paper and will highlight the, in my opinion, most relevant concepts, and the ones I find new to my experience.
+  </p>
+  <h2 id="inherent-complexity">
+   Inherent complexity
+  </h2>
+  <p>
+   Cells are the basic building blocks of the very complex and always dynamic living systems. Cells are composed by a very large number of components, are very difficult to observe, and show non-linear dynamics.
+  </p>
+  <p>
+   The dynamic nature of cell-biological systems is described by the cell cycle, which is the series of steps to perform cell replication; this allows living organisms to develop and to be maintained.
+  </p>
+  <p>
+   Living organisms as well as cells, fabricate themselves and possess certain independency with the exterior.
+  </p>
+  <p>
+   The functioning of a molecule, cell or system by itself does not define its function. The function of a system depends on the numbers and kinds of neighbours it interacts with.
+  </p>
+  <p>
+   These interactions can be modeled through the tools that systems theory provides (switch, amplifier, oscillator, filter). Unfortunatelly, these models must be restricted to a technologically feasible context or level (size, time, population, etc.), due to the high complexity of cell-biological systems.
+  </p>
+  <h2 id="modelling">
+   Modelling
+  </h2>
+  <p>
+   Hence, simplified hypothesis must be formulated. Dynamical systems theory provide the tools to make these formulations and to test them, through models that, in principle, should closely describe the behaviour of the system’s behaviour the are intended to model; additionally, the models must be sufficiently simple to be able to be tracked and computed, given the resources available for this tasks. This inevitably brings innacuracies to the model, so it never fully describes the system’s behaviour.
+  </p>
+  <p>
+   The chosen level of study to generate a model brings assumptions and choices, abstractions that bring philosophical issues:
+  </p>
+  <blockquote>
+   <p>
+    <strong>
+     Ontology
+    </strong>
+    : Describes basic assumptions about things.
+   </p>
+   <p>
+    <strong>
+     Epistemology
+    </strong>
+    :  study of the tools available for obtaining information of things.
+   </p>
+  </blockquote>
+  <p>
+   The a priori knowledge of a system affects the ability to learn from it.
+  </p>
+  <p>
+   The assumption that biological entities interact through feedback loops can be discussed through the tools developed by systems theory.
+  </p>
+  <p>
+   A system can exist in a set of states, that describe its dynamics, and can be fully measured or partially estimated from measurements.
+  </p>
+  <p>
+   Some of the variables of the model of the system can have fixed values given the environment of modelling; these are parameters. The
+   <em>
+    identification
+   </em>
+   of a system is the proposition of a model’s architecture and the finding of its parameters based on a priori knowledge and measurements.
+  </p>
+  <p>
+   It is common to propose models with architectures of differential equations, although this has been criticized, due to the different levels of systems that cannot be fully modeled at once.
+  </p>
+  <h2 id="domains-of-study">
+   Domains of study
+  </h2>
+  <p>
+   This brings the necessity of some conceptual closure: collapsing the exterior into some characterizations or black-boxing the interior; both are always needed at some extent.
+  </p>
+  <blockquote>
+   <p>
+    <strong>
+     Metabolism
+    </strong>
+    : Catabolism(energy storage) + anabolism (energy investment)
+   </p>
+   <p>
+    <strong>
+     Cell signalling
+    </strong>
+    : Transduction of signals, molecule transformations.
+   </p>
+   <p>
+    <strong>
+     Gene expression
+    </strong>
+    :  Transformation of gene information into gene produts.
+   </p>
+  </blockquote>
+  <p>
+   Biology is a case of organized complexity.
+  </p>
+  <blockquote>
+   <p>
+    <strong>
+     Model organism
+    </strong>
+    :  a species that has been widely studied.
+   </p>
+  </blockquote>
+  <h2 id="mathematical-modeling-cannot-be-automated">
+   Mathematical modeling cannot be automated
+  </h2>
+  <p>
+   Interdisiplinarity is needed and special care has to be put on the visualization of data, since the high-dimmension reduction into 2 or 3 dimmensions can hide important information.
+  </p>
+  <p>
+   Also, the available technological tools must be taken into account from the modelling, computations and presentation of data.
+  </p>
+  <h2 id="interactions-are-intertwined">
+   Interactions are Intertwined
+  </h2>
+  <p>
+   Generalizations become difficult as the knowledge of a system grows; nevertheless, we must be always aware that a trully holistic approach is never feasible.
+  </p>
+  <p>
+   Additionally, having knowledge of every piece of a system does not bring certainty of the system as a whole, and moreover, the functioning of a system does not reveal the dynamics of its parts.
+  </p>
+  <h2 id="mathematical-modelling-balancing-compromises">
+   Mathematical modelling: balancing compromises
+  </h2>
+  <p>
+   Even when picking a well-defined level of study, one must keep this study to a relativelly low number of components, since the analytical and methodological tools available are limited.
+  </p>
+  <p>
+   Two approaches are used in computer modelling:
+  </p>
+  <ul>
+   <li>
+    Full simulation of all parts, derived from first principles.
+   </li>
+   <li>
+    Reduction of complexity through abstraction.
+   </li>
+  </ul>
+  <p>
+   The latter is the addecuate approach for the study of biological systems, since first principles cannot be obtained.
+  </p>
+  <h2 id="domains-of-autonomy">
+   Domains of autonomy
+  </h2>
+  <table>
+   <thead>
+    <tr>
+     <th>
+      Size scale
+     </th>
+     <th>
+      Time scale
+     </th>
+    </tr>
+   </thead>
+   <tbody>
+    <tr>
+     <td>
+      Organism
+     </td>
+     <td>
+      Years
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Organs
+     </td>
+     <td>
+      Weeks and hours
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Cells
+     </td>
+     <td>
+      Hours and minutes
+     </td>
+    </tr>
+    <tr>
+     <td>
+      Intracellular reactions
+     </td>
+     <td>
+      Seconds
+     </td>
+    </tr>
+   </tbody>
+  </table>
+  <p>
+   Stability studied from a linear systems point of view can be inapropriate, so a non-linear perpective is better suited.
+  </p>
+  <h2 id="predictable-stochasticity">
+   Predictable stochasticity
+  </h2>
+  <p>
+   Randomness can come from the inability to precisely measure a signal, of due to process that is itself random.
+  </p>
+  <p>
+   Small fluctuation around a trend can be irrelevant.
+  </p>
+  <h1 id="conclussion">
+   Conclussion
+  </h1>
+  <p>
+   The ability to precisely model a system diminishes as the system becomes more complex. Abstraction becomes necessary to achieve simplication, even when abstraction itself an be a difficult task. This brings unpredictability, meaning that no model fully describes a system.
+  </p>
+ </body>
+</html>
