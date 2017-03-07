@@ -1,6 +1,12 @@
+> **Author**: Adolfo Hoyos Díaz
+>
+> Pontificia Universidad Javeriana, Cali
+
+
+
 # Practice: BIOCHAM 
 
-
+**Advisor**: Diana Hermith Ph.D.
 
 ## 1. Reversible enzyme kinetics
 
@@ -153,11 +159,21 @@ The boolean simulation is shown next:
 
 ## Comparisson
 
-$a9=\frac{2}{3}$  
+It can be seen, with the values of all parameters set to "1", that the shape of the dynamics of all components are very similar between both the reversible and the irreversible dynamics. The only apparent differences in this case is the stabilization time, which is less for the second case. This can be explained due to the irreversible dynamics proposed for the reaction in which we can see two irreversibles stages governed by the parameters $k_3$ and $k_6$ :
+
+$\array{ S+E &  \array{ k_1 \\ \longleftrightarrow  \\ k_2 } & ES \\   \array{ \uparrow  & k_6} & & \array{ k_3  & \downarrow  } \\ EP & \array{ k_4 \\ \longleftrightarrow  \\ k_5 } & P+E }  $                        
 
 
 
+In contrast, the reversible dynamics is described only by two-way reactions:
 
+
+
+$  \array{ S+E   &   \array{ k_1 \\ \longleftrightarrow  \\ k_2 }  & ES  \\   &  & \array{ k_3 & \updownarrow & k_4} \\  EP &  \array{ k_6 \\ \longleftrightarrow  \\ k_5 }  & EP  }$
+
+
+
+More analytical and numerical tests have to be done to precisely address the causes of this differences, e.g. with different parameter values.
 
 
 [rever]: images/biocham_reversible1.PNG
