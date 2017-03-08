@@ -63,10 +63,15 @@ $MM_{rate} =\frac{kcat}{(k_m + Su)}$
 
 depends on the concentration of dephosporylated compound SU; this will speed up the reaction since the rate will grow as the concencentration of SU decreases.
 
-
 | Feature |Units|Exact | Aprox |
 | --- | --- | --- | --- |
 | Volume | ${um}^3$ | 1 | 1
+
+
+
+___
+
+
 
 
 ### Simulation results
@@ -99,8 +104,11 @@ The results for the $MM_{rate}$ function is seen in the next figure
 
 ![approxMMrate][] 
 
-
 and, although the wave form relates (almost) exactly to the ES evolution of the **exact** reaction, the values are two orders of magnitud below, going from $\sim 5.5 \times 10 ^{-2}$ to $0$.
+
+___
+
+
 
 
 ## 2. A little modification
@@ -162,6 +170,10 @@ present(B, 1).
 
 These initial concentrations were selected as shown in the previous code since component **_A_** and **_B_** would generate the rest of the necessary substances of the reaction scheme.
 
+___
+
+
+
 ### Simulations
 
 The ordinary differencial equations **(ODE) simulation** results are shown on next figure:
@@ -192,6 +204,101 @@ On the other hand, Biocham's boolean simulator gave the next result:
 
 The shown Boolean simulation plot also suggests a depletion of **_A_** and **_X_**, while all other components remain in the system: **_C_** is generated before the simultaneouly appearing **_D_** and **_Y_**, while **_B_** is always present.
 
+___
+
+
+
+### CTL
+
+
+
+In this section I'm going to show the evaluation results of the proposed CTL queries:
+
+- Reachable
+- Stable
+- Steady
+
+#### Reachable
+
+This boolean query tells us if the expression we are evaluating is going to happen somewhere in time. Of course, when we submit components of this reaction, and as we have seen in the previous simulation results, all the components are present in the system at a given moment. This is seen as the result of the query being a **"true"** value.
+
+![][CTL]
+
+
+
+When we try a **reachable** (or any other) property query of a molecule that we have not defined in our model, we get the following error message:
+
+![][CTLund]
+
+
+
+#### Steady
+
+The **steady** query tells us if a expression reaches a steady value in any point in time. As we have seen previously, all the types of simulations we ran have told us that all molecules reach a steady concentration in the system. This is confirmed by the boolean simulation using CTL, shown next:
+
+
+
+![][CTLsteady]
+
+
+
+#### Stable
+
+The **stable** query tells us something like:
+
+- $stable(X) \longrightarrow$ I will get $X$ forever no matter what.
+
+The results of the queries for every component of our reactions are shown next:
+
+
+
+![][CTLstable]
+
+
+
+
+
+Summarizing the previous results:
+
+| Component | Stable? |
+| --------- | ------- |
+| A         | false   |
+| B         | false   |
+| X         | false   |
+| Y         | false   |
+| D         | true    |
+| C         | true    |
+
+
+
+This is clear if we think that none of the reactions:
+
+$R_1:\array{ &   k_1 \\  A & \longrightarrow & X} $
+
+$R_2: \array{ & k_2 \\ B+X & \longrightarrow & Y+D}$
+
+$R_3: \array{ & k_3 \\ 2X+Y & \longrightarrow & 3X}$
+
+$R_4: \array{ & k_4 \\ X & \longrightarrow & C}$
+
+ 
+
+describe any consumption of **_D_** or **_C_**, so these components, once present in the system, will remain there.
+
+___
+
+
+
+## 2. Read and analyze 
+
+
+
+
+
+___
+
+
+
 [project]: project.pdf
 [exact_source]: 1/MMexact.bngl
 [approx_source]: 1/MMaprox.bngl
@@ -206,4 +313,8 @@ The shown Boolean simulation plot also suggests a depletion of **_A_** and **_X_
 [brusODE]: 3/images/ODE.PNG
 [brusStocastic]: 3/images/stocastic.PNG
 [brusBoolean]: 3/images/boolean.PNG
+[CTL]: 3/images/CTL.PNG
+[CTLund]: 3/images/CTLundefined.PNG
+[CTLsteady]: 3/images/CTLsteady.PNG
+[CTLstable]: 3/images/CTLstable.PNG
 
