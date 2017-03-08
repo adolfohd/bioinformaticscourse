@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Made with Remarkable!
+  </title>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   body,table tr{background-color:#fff}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}pre code,table,table tr{padding:0}hr,pre code{background:0 0}body{font:16px Helvetica,Arial,sans-serif;line-height:1.4;color:#333;word-wrap:break-word;padding:10px 15px}strong,table tr th{font-weight:700}h1{font-size:2em;margin:.67em 0;text-align:center}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h1,h2,h3,h4,h5,h6{font-weight:700;position:relative;margin-top:15px;margin-bottom:15px;line-height:1.1}h1,h2{border-bottom:1px solid #eee}hr{height:0;margin:15px 0;overflow:hidden;border:0;border-bottom:1px solid #ddd}a{color:#4183C4}a.absent{color:#c00}ol,ul{padding-left:15px;margin-left:5px}ol{list-style-type:lower-roman}table tr{border-top:1px solid #ccc;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}img{max-width:100%}blockquote{padding:0 15px;border-left:4px solid #ccc}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;white-space:pre;border:none}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <blockquote>
+   <p>
+    <strong>
+     Author
+    </strong>
+    : Adolfo Hoyos Díaz
+   </p>
+   <p>
+    Pontificia Universidad Javeriana, Cali
+   </p>
+  </blockquote>
+  <h1 id="practice-biocham">
+   Practice: BIOCHAM
+  </h1>
+  <p>
+   <strong>
+    Advisor
+   </strong>
+   : Diana Hermith Ph.D.
+  </p>
+  <h2 id="1-reversible-enzyme-kinetics">
+   1. Reversible enzyme kinetics
+  </h2>
+  <p>
+   The kinetics for this example are described by the equations:
+  </p>
+  <p>
+   <mathjax>
+    $S+E \array{ k_1 \\ \longleftrightarrow  \\ k_2 } ES$
+   </mathjax>
+  </p>
+  <p>
+   <mathjax>
+    $ES \array{ k_3 \\ \longleftrightarrow  \\ k_4 } EP $
+   </mathjax>
+  </p>
+  <p>
+   <mathjax>
+    $EP \array{ k_5 \\ \longleftrightarrow  \\ k_6 } P+E $
+   </mathjax>
+  </p>
+  <p>
+   The designed code for the proposed dynamics is:
+  </p>
+  <pre><code class="c">MA (K1) for S + E =&gt; ES.
+MA (K2) for ES =&gt; E + S.
+MA (K3) for ES =&gt; EP.
+MA (K4) for EP =&gt; ES.
+MA (K5) for EP =&gt; P + E.
+MA (K6) for P + E =&gt; EP.
+parameter(K1, 1).
+parameter(K2, 1).
+parameter(K3, 1).
+parameter(K4, 1).
+parameter(K5, 1).
+parameter(K6, 1).
+present(S, 1).
+present(E, 1).
+</code></pre>
+  <p>
+   And put inside Biocham:
+  </p>
+  <p>
+   <img alt="" src="images/biocham_reversible1.PNG"/>
+  </p>
+  <h3 id="simulations">
+   Simulations
+  </h3>
+  <h4 id="ode">
+   ODE
+  </h4>
+  <p>
+   When the code is run with ODE simulator, using the Rosenbrok algorithm, it generates a plot like the one shown next:
+  </p>
+  <p>
+   <img alt="" src="images/reversibleRosenbrok1.png"/>
+  </p>
+  <p>
+   Now, selecting the Runge-Kutta algorithm for solving the ODE system:
+  </p>
+  <p>
+   <img alt="" src="images/reversibleRunge1.png"/>
+  </p>
+  <p>
+   Although it is not directly visible, the generated graphics through both methods almost exactly overlap. This tells us that, at this level of complexity and scale, both methods behave practically the same.
+  </p>
+  <h4 id="stocastic">
+   Stocastic
+  </h4>
+  <p>
+   The next plot was generated selecting the Gillespie algorithm:
+  </p>
+  <p>
+   <img alt="" src="images/reveGillespie.PNG"/>
+  </p>
+  <p>
+   On the other hand, the Tau-Lipping algorithm was selected to get the next figure:
+  </p>
+  <p>
+   <img alt="" src="images/reveTau.PNG"/>
+  </p>
+  <p>
+   While the results of ODE and stocastic simulations are apparently different, both Gillespie and Tau-Lipping curves oscillate around the obtained ODE plots, and present similar steady states for the different observable variables.
+  </p>
+  <h4 id="boolean">
+   Boolean
+  </h4>
+  <p>
+   The boolean simulation was ran during 30 transitions, and its plot is shown on the next figure:
+  </p>
+  <p>
+   <img alt="" src="images/reveBoolean.PNG"/>
+  </p>
+  <h2 id="2-coupled-irreversible-enzyme-kinetics">
+   2. Coupled irreversible enzyme kinetics
+  </h2>
+  <p>
+   The reaction equations are:
+  </p>
+  <p>
+   <mathjax>
+    $S+E \array{ k_1 \\ \longleftrightarrow  \\ k_2 } ES$
+   </mathjax>
+  </p>
+  <p>
+   <mathjax>
+    $ES \array{ k_3 \\ \longrightarrow  } P+E $
+   </mathjax>
+  </p>
+  <p>
+   <mathjax>
+    $P+E \array{ k_5 \\ \longleftrightarrow  \\ k_4 } EP $
+   </mathjax>
+  </p>
+  <p>
+   <mathjax>
+    $EP \array{ k_6 \\ \longrightarrow  } S+E $
+   </mathjax>
+  </p>
+  <p>
+   And the respective Biocham code is:
+  </p>
+  <pre><code>MA (K1) for S + E =&gt; ES.
+MA (K2) for ES =&gt; E + S.
+MA (K3) for ES =&gt; P+E.
+MA (K4) for EP =&gt; P+E.
+MA (K5) for P + E =&gt; EP.
+MA (K6) for EP =&gt; S + E.
+parameter(K1, 1).
+parameter(K2, 1).
+parameter(K3, 1).
+parameter(K4, 1).
+parameter(K5, 1).
+parameter(K6, 1).
+present(S, 1).
+present(E, 1).
+</code></pre>
+  <p>
+   <img alt="" src="images/biocham_irreversible1.PNG"/>
+  </p>
+  <h3 id="simulations_1">
+   Simulations
+  </h3>
+  <h4 id="ode_1">
+   ODE
+  </h4>
+  <p>
+   <img alt="" src="images/irreODE.PNG"/>
+  </p>
+  <h4 id="stocastic_1">
+   Stocastic
+  </h4>
+  <p>
+   <img alt="" src="images/irreGillespie.PNG"/>
+  </p>
+  <p>
+   <img alt="" src="images/irreTau.PNG"/>
+  </p>
+  <p>
+   In a similar way than the
+   <em>
+    reversible enzyme kinetics
+   </em>
+   example, all curves in both stocastic simulations, for the
+   <em>
+    irreversible enzyme kinetics
+   </em>
+   example, oscillate aroung the ODE plot.
+  </p>
+  <h4 id="boolean_1">
+   Boolean
+  </h4>
+  <p>
+   The boolean simulation is shown next:
+  </p>
+  <p>
+   <img alt="" src="images/irreBoolean.PNG"/>
+  </p>
+  <h2 id="comparisson">
+   Comparisson
+  </h2>
+  <p>
+   It can be seen, with the values of all parameters set to “1”, that the shape of the dynamics of all components are very similar between both the reversible and the irreversible dynamics. The only apparent differences in this case is the stabilization time, which is less for the second case. This can be explained due to the irreversible dynamics proposed for the reaction in which we can see two irreversibles stages governed by the parameters
+   <mathjax>
+    $k_3$
+   </mathjax>
+   and
+   <mathjax>
+    $k_6$
+   </mathjax>
+   :
+  </p>
+  <p>
+   <mathjax>
+    $\array{ S+E &amp;  \array{ k_1 \\ \longleftrightarrow  \\ k_2 } &amp; ES \\   \array{ \uparrow  &amp; k_6} &amp; &amp; \array{ k_3  &amp; \downarrow  } \\ EP &amp; \array{ k_4 \\ \longleftrightarrow  \\ k_5 } &amp; P+E }  $
+   </mathjax>
+  </p>
+  <p>
+   In contrast, the reversible dynamics is described only by two-way reactions:
+  </p>
+  <p>
+   <mathjax>
+    $  \array{ S+E   &amp;   \array{ k_1 \\ \longleftrightarrow  \\ k_2 }  &amp; ES  \\   &amp;  &amp; \array{ k_3 &amp; \updownarrow &amp; k_4} \\  EP &amp;  \array{ k_6 \\ \longleftrightarrow  \\ k_5 }  &amp; EP  }$
+   </mathjax>
+  </p>
+  <p>
+   More analytical and numerical tests have to be done to precisely address the causes of this differences, e.g. with different parameter values.
+  </p>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>

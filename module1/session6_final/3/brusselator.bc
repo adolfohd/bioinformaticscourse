@@ -1,0 +1,14 @@
+MA (K1) for A => X.
+MA (K2) for B + X => Y + D.
+MA (K3) for 2*X + Y => 3*X.
+MA (K4) for X => C.
+parameter(K1, 1).
+parameter(K2, 1).
+parameter(K3, 1).
+parameter(K4, 1).
+present(A, 1).
+present(B, 1).
+absent(X,0).
+absent(Y,0).
+absent(C,0).
+absent(D,0).
