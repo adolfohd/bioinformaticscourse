@@ -179,14 +179,14 @@ More analytical and numerical tests have to be done to precisely address the cau
 [rever]: images/biocham_reversible1.PNG
 [reverrosen]: images/reversibleRosenbrok1.png
 [reverrunge]: images/reversibleRunge1.png
-[reveGillespie]: images/reveGillespie.png
-[reveTau]: images/reveTau.png
-[reveBoolean]: images/reveBoolean.png
+[reveGillespie]: images/reveGillespie.PNG
+[reveTau]: images/reveTau.PNG
+[reveBoolean]: images/reveBoolean.PNG
 
 
 
 [irrever]: images/biocham_irreversible1.PNG
-[irreODE]: images/irreODE.png
-[irreGillespie]: images/irreGillespie.png
-[irreTau]: images/irreTau.png
-[irreBoolean]: images/irreBoolean.png
+[irreODE]: images/irreODE.PNG
+[irreGillespie]: images/irreGillespie.PNG
+[irreTau]: images/irreTau.PNG
+[irreBoolean]: images/irreBoolean.PNG
