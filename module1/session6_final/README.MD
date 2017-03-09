@@ -293,22 +293,28 @@ ___
 
 
 
-Analyze the statement:
+In this section, we are being asked to analyze the statement:
 
 > *“Biological organisms are complex because they are characterized by hierarchies of self-assembled networks. Networks of interacting molecules at the level of the cell, interacting molecules and cells at the level of tissues, interacting organs at the level of the organisms, and interacting organisms at the level of ecosystems. These interactions/networks are well organized in space and time, normally, they are non-linear and there are a large number of them”*
 
+from the two texts:
+
+ - [The complexity of cell-biological systems][complexity]
+ - [Developing bioinformatics computer skills][skills]
 
 ___
 
 
 ### The complexity of cell-biological systems
 
-Introduction section, page 357
+In the *Introduction* section, page 357, the text says:
 
 > - Cells are composed of a very large number and variety of components interacting in space and time.
 - Cell-biological systems are difficult to observe.
 - The dynamic functioning of cells is of a nonlinear nature.
 - Living systems are subject to continuous change.
+
+
 
 then, on the next page:
 
@@ -321,7 +327,7 @@ Beginning of section 7, page 377:
 >The structural (physical/material) organization of cells is the outcome of an elaborate self-organizing process, involving gene expression, regulation, signalling and metabolism. This structural organization of the cell then serves as an environment for the cell’s functional organization, leading to growth, differentiation, proliferation and cell death (apoptosis). The cell is itself a component of a larger system with higher levels of structural and functional organization. For the human organism these can be summarized as follows.
 
 
-### Developing computer bioinformatics skills
+### Developing bioinformatics computer skills
 
 From page 32, I quote:
 
@@ -346,8 +352,10 @@ ___
 [brusODE]: 3/images/ODE.PNG
 [brusStocastic]: 3/images/stocastic.PNG
 [brusBoolean]: 3/images/boolean.PNG
-[CTL]: 3/images/CTL.PNG
+[CTL]: 3/images/CTL.png
 [CTLund]: 3/images/CTLundefined.PNG
-[CTLsteady]: 3/images/CTLsteady.PNG
-[CTLstable]: 3/images/CTLstable.PNG
+[CTLsteady]: 3/images/CTLsteady.png
+[CTLstable]: 3/images/CTLstable.png
 
+[complexity]: ../essay1/TheComplexityOfCell-BiologicalSystems.pdf
+[skills]: ../essay2/Gibas2001DevelopingBioinformatics.pdf
