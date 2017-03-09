@@ -1,8 +1,16 @@
-# Module 1: Final session
+> **Author**: Adolfo Hoyos Díaz
+**Advisor**: Diana Hermith Ph.D.
+
+![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D):+1: 3  
+
+
+![]( https://latex.codecogs.com/gif.latex?\mathcal{W}(A,f)&space;=&space;(T,\bar{f}) )
+
+# Session 6: Final of Module 1
 
 This session brings a mini project described in [this file][project].
 
-# Answers
+From now on on this text, I present my answers to the questionary delivered by Dr. Diana Hermith.
 
 ## 1. Exact vs Approx.
 
@@ -69,8 +77,6 @@ depends on the concentration of dephosporylated compound SU; this will speed up 
 
 
 
-___
-
 
 
 
@@ -106,7 +112,6 @@ The results for the $MM_{rate}$ function is seen in the next figure
 
 and, although the wave form relates (almost) exactly to the ES evolution of the **exact** reaction, the values are two orders of magnitud below, going from $\sim 5.5 \times 10 ^{-2}$ to $0$.
 
-___
 
 
 
@@ -285,11 +290,10 @@ $R_4: \array{ & k_4 \\ X & \longrightarrow & C}$
 
 describe any consumption of **_D_** or **_C_**, so these components, once present in the system, will remain there.
 
-___
 
 
 
-## 2. Read and analyze 
+## 4. Read and analyze 
 
 
 
@@ -297,12 +301,14 @@ In this section, we are being asked to analyze the statement:
 
 > *“Biological organisms are complex because they are characterized by hierarchies of self-assembled networks. Networks of interacting molecules at the level of the cell, interacting molecules and cells at the level of tissues, interacting organs at the level of the organisms, and interacting organisms at the level of ecosystems. These interactions/networks are well organized in space and time, normally, they are non-linear and there are a large number of them”*
 
-from the two texts:
+from the point of view of the texts:
 
  - [The complexity of cell-biological systems][complexity]
  - [Developing bioinformatics computer skills][skills]
 
+So, I'm taking quotes from both texts, that argument the mentioned statement. 
 ___
+
 
 
 ### The complexity of cell-biological systems
@@ -314,18 +320,20 @@ In the *Introduction* section, page 357, the text says:
 - The dynamic functioning of cells is of a nonlinear nature.
 - Living systems are subject to continuous change.
 
+The first three items of the quoted list address some very important characteristics of living systems, and they summarize the main ideas of the analyzed statement, adding the non-stationary nature of life.
 
+Now, on the next page appears the next fragment:
 
-then, on the next page:
-
-> The term “self” in “self-organization” suggests a form of closure of the system to outside influences, a kind of autonomy. Physically a cell is an open system which relies on a constant exchange of energy, matter and information with its environment. The closure of a living system is therefore not with respect to material causes but with respect to efficient causation: 1 In a living system each part/process is at once cause and effect, a means and an end — the cell is a self-organizing biochemical system that fabricates itself [Wolkenhauer, et al., 2007].
+> The term “self” in “self-organization” suggests a form of closure of the system to outside influences, a kind of autonomy. Physically a cell is an open system which relies on a constant exchange of energy, matter and information with its environment. The closure of a living system is therefore not with respect to material causes but with respect to efficient causation: 1 In a living system each part/process is at once cause and effect, a means and an end — the cell is a self-organizing biochemical system that fabricates itself [ [Wolkenhauer, et al., 2007][wolken] ].
 Living systems are thus self-referential, every part owes its existence/explanation to the organization of the remaining parts. Through cyclic self-organizing and self-maintaining processes, parts generate the whole as does the whole define the context in which its parts function. The principle of autonomous self-fabrication is a, if not the, fundamental property that distinguishes living from non-living systems.
 
+The "self-assembled networks" mentioned by the studied statement can be related to the "self-organization" mentioned in the previous piece, and here it is discused the fact that this self-organization actually depends on all internal and external factors. This adds up to the idea of "well-organized interactions/networks, due the the explanation of their multilevel nature inside living systems. 
 
 Beginning of section 7, page 377:
 
->The structural (physical/material) organization of cells is the outcome of an elaborate self-organizing process, involving gene expression, regulation, signalling and metabolism. This structural organization of the cell then serves as an environment for the cell’s functional organization, leading to growth, differentiation, proliferation and cell death (apoptosis). The cell is itself a component of a larger system with higher levels of structural and functional organization. For the human organism these can be summarized as follows.
+> "*The structural (physical/material) organization of cells is the outcome of an elaborate self-organizing process, involving gene expression, regulation, signalling and metabolism. This structural organization of the cell then serves as an environment for the cell’s functional organization, leading to growth, differentiation, proliferation and cell death (apoptosis). The cell is itself a component of a larger system with higher levels of structural and functional organization.*"
 
+Finally, this paragraph further explains the complexity of self-organized interactions of living systems.
 
 ### Developing bioinformatics computer skills
 
@@ -334,6 +342,7 @@ From page 32, I quote:
 > *"There is more to biology than sequences. Proteins and nucleic acids also have complex 3D structures that provide clues to their functions in the living organism. Molecular structures are usually represented as collections of atoms, each of which has a defined position in 3D space. Structure analysis can be performed on static structures, or movements and interactions in the molecules can be studied with
 molecular simulation methods."*
 
+Now, in this fragment, we can have a glance of the complexity of living systems, with the mention of the 3D structure of molecules inside cells as explanatory of the functions the perform, although the modelling of these structures is very demanding in terms of computation resources.
 ___
 
 
@@ -359,3 +368,5 @@ ___
 
 [complexity]: ../essay1/TheComplexityOfCell-BiologicalSystems.pdf
 [skills]: ../essay2/Gibas2001DevelopingBioinformatics.pdf
+
+[wolken]: http://www.sciencedirect.com/science/article/pii/S0022519307000203)
