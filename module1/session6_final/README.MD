@@ -301,20 +301,30 @@ Analyze the statement:
 ___
 
 
-Introduction section, page 353:
+### The complexity of cell-biological systems
 
-> The term “self” in “self-organization” suggests a form of closure of the system
-to outside influences, a kind of autonomy. Physically a cell is an open system
-which relies on a constant exchange of energy, matter and information with its
-environment. The closure of a living system is therefore not with respect to ma-
-terial causes but with respect to efficient causation: 1 In a living system each
-part/process is at once cause and effect, a means and an end — the cell is a self-
-organizing biochemical system that fabricates itself [Wolkenhauer, et al., 2007].
-Living systems are thus self-referential, every part owes its existence/explanation
-to the organization of the remaining parts. Through cyclic self-organizing and
-self-maintaining processes, parts generate the whole as does the whole define the
-context in which its parts function. The principle of autonomous self-fabrication is a, if not the, fundamental property that distinguishes living from non-living systems.
+Introduction section, page 357
 
+> - Cells are composed of a very large number and variety of components interacting in space and time.
+- Cell-biological systems are difficult to observe.
+- The dynamic functioning of cells is of a nonlinear nature.
+- Living systems are subject to continuous change.
+
+then, on the next page:
+
+> The term “self” in “self-organization” suggests a form of closure of the system to outside influences, a kind of autonomy. Physically a cell is an open system which relies on a constant exchange of energy, matter and information with its environment. The closure of a living system is therefore not with respect to material causes but with respect to efficient causation: 1 In a living system each part/process is at once cause and effect, a means and an end — the cell is a self-organizing biochemical system that fabricates itself [Wolkenhauer, et al., 2007].
+Living systems are thus self-referential, every part owes its existence/explanation to the organization of the remaining parts. Through cyclic self-organizing and self-maintaining processes, parts generate the whole as does the whole define the context in which its parts function. The principle of autonomous self-fabrication is a, if not the, fundamental property that distinguishes living from non-living systems.
+
+
+Beginning of section 7, page 377:
+
+>The structural (physical/material) organization of cells is the outcome of an elaborate self-organizing process, involving gene expression, regulation, signalling and metabolism. This structural organization of the cell then serves as an environment for the cell’s functional organization, leading to growth, differentiation, proliferation and cell death (apoptosis). The cell is itself a component of a larger system with higher levels of structural and functional organization. For the human organism these can be summarized as follows.
+
+
+Developing computer bioinformatics skills, page 32:
+
+> There is more to biology than sequences. Proteins and nucleic acids also have complex 3D structures that provide clues to their functions in the living organism. Molecular structures are usually represented as collections of atoms, each of which has a defined position in 3D space. Structure analysis can be performed on static structures, or movements and interactions in the molecules can be studied with
+molecular simulation methods.
 
 ___
 
