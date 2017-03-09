@@ -1,10 +1,6 @@
 > **Author**: Adolfo Hoyos Díaz
 **Advisor**: Diana Hermith Ph.D.
 
-![equation](http://latex.codecogs.com/gif.latex?Concentration%3D%5Cfrac%7BTotalTemplate%7D%7BTotalVolume%7D):+1: 3  
-
-
-![]( https://latex.codecogs.com/gif.latex?\mathcal{W}(A,f)&space;=&space;(T,\bar{f}) )
 
 # Session 6: Final of Module 1
 
