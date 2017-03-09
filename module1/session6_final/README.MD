@@ -295,16 +295,25 @@ ___
 
 Analyze the statement:
 
-> “Biological organisms are complex because they are characterized by hierarchies of self-assembled networks. Networks of interacting molecules at the level of the cell, interacting
-> molecules and cells at the level of tissues, interacting organs at the level of the
-> organisms, and interacting organisms at the level of ecosystems. These
-> interactions/networks are well organized in space and time, normally, they are non-linear
-> and there are a large number of them” 
+> *“Biological organisms are complex because they are characterized by hierarchies of self-assembled networks. Networks of interacting molecules at the level of the cell, interacting molecules and cells at the level of tissues, interacting organs at the level of the organisms, and interacting organisms at the level of ecosystems. These interactions/networks are well organized in space and time, normally, they are non-linear and there are a large number of them”*
 
 
+___
 
 
+Introduction section, page 353:
 
+> The term “self” in “self-organization” suggests a form of closure of the system
+to outside influences, a kind of autonomy. Physically a cell is an open system
+which relies on a constant exchange of energy, matter and information with its
+environment. The closure of a living system is therefore not with respect to ma-
+terial causes but with respect to efficient causation: 1 In a living system each
+part/process is at once cause and effect, a means and an end — the cell is a self-
+organizing biochemical system that fabricates itself [Wolkenhauer, et al., 2007].
+Living systems are thus self-referential, every part owes its existence/explanation
+to the organization of the remaining parts. Through cyclic self-organizing and
+self-maintaining processes, parts generate the whole as does the whole define the
+context in which its parts function. The principle of autonomous self-fabrication is a, if not the, fundamental property that distinguishes living from non-living systems.
 
 
 ___
