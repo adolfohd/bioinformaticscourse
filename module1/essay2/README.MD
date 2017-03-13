@@ -1,13 +1,15 @@
 > **Author**: Adolfo Hoyos
 **Advisor**: Diana Hermith Ph.D.
 
+
+
 # Computational Approaches to Biological Questions
 
 Similarity between (genetic) molecules can indicate homology between structure or function of multiple different species
 
 ## Molecular Biology's Central Dogma
 
-> I have made almost a transcription of this section (of course, as possible in my own words) because of my academic and professional background not being very solid in Biology, and I have found this to be a remarkable learning exercise in this regard. 
+> I have made almost a transcription of this section (of course, as possible in my own words) because of my academic and professional profile not being grounded on Biology, and I have found this to be a remarkable learning exercise in this regard. 
 
 DNA is a ilnear polymer made of nucleotides (A, G, C and T), and contains the information needed by living beings to replicate themselves. This information is processed by cells, where it can be **replicated**, **transcripted** into RNA, and where RNA is **translated** into protein.
 
