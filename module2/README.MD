@@ -163,12 +163,41 @@ The double helix is made of one positive strand and a negative strand.
 
 Transcription factor identify the regulatory motif so transcription starts from there.
 
-> notations for motifs
+> notations for motifs (this is explained in the course's slides)
 >
 > - Logo notation
 > - Consensus notation
 
 
+
+### Construction of a PWM
+
+
+
+The simplest way of modeling the backgroung is to assign an uniform distribution:
+
+| Nucleotide | Probability |
+| ---------- | ----------- |
+| A          | 0.25        |
+| C          | 0.25        |
+| G          | 0.25        |
+| T          | 0.25        |
+
+
+
+With this, we build a weight vector for the background:
+
+$ b = \left[  \array{ 0.25 \\ 0.25 \\ 0.25 \\ 0.25 }  \right]$
+
+### Slide PWM
+
+
+
+every column id divided by the respective background weight:
+
+
+
+$M'_{i,j} = M_{i,j} \div b_i$
 
 
 
@@ -178,6 +207,3 @@ Transcription factor identify the regulatory motif so transcription starts from 
 [align-algo]: material_curso_garreta/00-alignments/00-bioinfo-alignments-algorithmDP.pdf
 [global-code]: material_curso_garreta/00-alignments/code/global_alignment.py
 
-
-
-material_curso_garreta/00-alignments/code/global_alignment.py
