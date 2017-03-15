@@ -176,4 +176,8 @@ Transcription factor identify the regulatory motif so transcription starts from 
 
 [dynamic]: images/dynamic.png
 [align-algo]: material_curso_garreta/00-alignments/00-bioinfo-alignments-algorithmDP.pdf
-[global-code]: 
+[global-code]: material_curso_garreta/00-alignments/code/global_alignment.py
+
+
+
+material_curso_garreta/00-alignments/code/global_alignment.py
