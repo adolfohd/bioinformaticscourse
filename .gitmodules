@@ -1,0 +1,6 @@
+[submodule "bioinformatica"]
+	path = bioinformatica
+	url = https://github.com/lgarreta/bioinformatica
+[submodule "module2/material_curso_garreta"]
+	path = module2/material_curso_garreta
+	url = https://github.com/lgarreta/bioinformatica
