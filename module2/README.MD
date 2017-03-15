@@ -195,9 +195,21 @@ $ b = \left[  \array{ 0.25 \\ 0.25 \\ 0.25 \\ 0.25 }  \right]$
 
 every column id divided by the respective background weight:
 
-
-
 $M'_{i,j} = M_{i,j} \div b_i$
+
+> Review distances between strings
+
+
+
+> What's this?
+>
+> - 3 - amero
+> - 3 - mers
+> - k - mers
+
+
+
+
 
 
 
