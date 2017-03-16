@@ -1,7 +1,7 @@
+#!/usr/bin/python
+
 from Bio import motifs
-
 # seqsTmp = open ()
-
 sequences = []
 
 for seq in open("sequences.txt"):
