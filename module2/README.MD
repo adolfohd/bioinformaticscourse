@@ -6,6 +6,22 @@ Welcome to my documentation of module 2, lectured by Dr. Luis Garreta.
 
 - In the folder [material_curso_garreta][materialcurso] we can find the files provided by our lecturer as a sub-module of this repository. I will try to keep this as updated as possible, and maybe contribute to that repo. 
 
+- To update (clone) that submodule for the first time, go into the folder and...
+
+  ```
+  $ git submodule init
+  $ git submodule update
+  ```
+
+  For additional updates:
+
+  ```
+  $ git fetch
+  $ git merge origin/master
+  ```
+
+  ​
+
 
 
 
@@ -19,7 +35,7 @@ Welcome to my documentation of module 2, lectured by Dr. Luis Garreta.
 
 
 
-> Homología
+> HomologÃ­a
 >
 > Similaridad (computacional)
 
