@@ -265,15 +265,88 @@ ___
 
 #### Protein profile HMMs
 
+ > complete this
+ 
+### HMM Architecture
+
+#### Finite state machine
+- Deterministic model
+- Markov assumption:
+	- Next state depends only on all previous states
+- Order $n$ model
+	- Next state depends only on $n$ previous states
+	- Simplest: Order 1
+	
 
 			
+#### State transition matrix
+
+
+$a_{ij} \rightarrow$ transition probability from state $i$ to state $j$
+
+We always have that $ \sum_{j=1}^K {a_{ij}}$
+
+e.g.:
+
+$A= \left\{ \array{   & Sun  & Cloud & Rain \\ Sun & 0.5 & 0.25 & 0.25 \\ Cloud & 0.375 & 0.125 & 0.375 \\ Rain & 0.125 & 0.625 & 0.375 } \right\}$
+
+
+#### Initial state
+
+$\Pi = \left\{ \array{ Sun & Cloud & Rain \\ 1 & 0 & 0 }  \right\} $ 
+
+#### Two sets of states
+
+- Observable states (moisture in seaweed)
+- Hidden states $\rightarrow$ what I want to predict (weather)
+
+
+#### Emission matrix
 
 
 
 
+$\array{ & \bf{Seaweed} \\  \bf{Weather} &  Dry & Dryish & Damp & Soggy \\ Sun & \\ Cloud \\ Rain}$
 
 
 
+### The problems of HMMs
+
+
+
+- The first problem is to determine if a sequence of dice results belongs to our model 
+	- **Evaluation question of HMMs**
+- What is the state of the dice (fair or loaded) for any given dice result?
+	- **Decoding question of HMMS**
+- How the state **transition** and the **emission** matrices change as more results are thrown by the croupier?
+	- **Learning question of HMMs**
+
+### Hidden states and observable sequence
+
+$\pi_t$: hidden state
+$x_t$: emitted symbol during $\pi_t$
+
+Path: $\pi_1, \pi_2,...,\pi_N$
+
+### Memory-less
+
+$P(\pi_{t+1}= k | \mbox{ 'all that has happened so far'} )$
+$P(\pi_{t+1}= k | x_1, x_2, ..., x_t )$
+$P(\pi_{t+1}= k | x_t $
+
+
+> **CpG islands**
+ - Higer probability of finding a gene in subsequences containing a high ratio of C and G nucleotides.
+
+
+### Problem 2: Decoding
+
+- Find the best parse of a sequence
+
+
+
+> **Homework**:
+Find ADN sequences with previously identified CpG islands.
 
 [materialcurso]: material_curso_garreta/
 
