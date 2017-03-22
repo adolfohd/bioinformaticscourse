@@ -233,6 +233,46 @@ ___
    - ["*Databases Searches*"][krane_fragment]. [Fundamental Concepts of Bioinformatics][krane] (Krane & Raymer) p.48. (PDF)
 
 
+> **R/.** Slides are in [this file][01slides] 
+
+
+
+
+
+## March 22nd, 2017
+
+
+> How to predict when a dice is charged?
+
+
+### Hidden Markov Models (HMM)
+
+#### Gene finding and prediction
+
+- Genes have 
+	- Start
+	- Finish
+	- Parts
+		- exons
+		- codond (flags)
+			- start codons
+			- middle codons
+			- donor site
+	- Poly-A site
+		- very distinctive
+		
+		
+
+#### Protein profile HMMs
+
+
+			
+
+
+
+
+
+
 
 
 [materialcurso]: material_curso_garreta/
@@ -245,4 +285,6 @@ ___
 [lesk_fragment]: 01slides/lesk_fragment.pdf
 [krane]: biblio/krane.pdf
 [krane_fragment]: 01slides/krane_fragment.pdf
+
+[01slides]: 01slides/01slides.pdf
 
