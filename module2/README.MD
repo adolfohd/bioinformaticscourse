@@ -242,7 +242,7 @@ ___
 [global-code]: material_curso_garreta/00-alignments/code/global_alignment.py
 
 [lesk]: biblio/lesk.pdf
-[lesk_fragment]: biblio/lesk_fragment.pdf
+[lesk_fragment]: 01slides/lesk_fragment.pdf
 [krane]: biblio/krane.pdf
-[krane_fragment]: biblio/krane_fragment.pdf
+[krane_fragment]: 01slides/krane_fragment.pdf
 
