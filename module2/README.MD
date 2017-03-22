@@ -225,6 +225,12 @@ $M'_{i,j} = M_{i,j} \div b_i$
 
 
 
+___
+
+
+> make slides from:
+  - ["*Significance of Alignments*"][lesk_fragment]. [Introduction to Bioinformatics][lesk]¨ (Arthur M. Lesk) p.267 (Biblioteca PUJ).
+   - ["*Databases Searches*"][krane_fragment]. [Fundamental Concepts of Bioinformatics][krane] (Krane & Raymer) p.48. (PDF)
 
 
 
@@ -234,4 +240,9 @@ $M'_{i,j} = M_{i,j} \div b_i$
 [dynamic]: images/dynamic.png
 [align-algo]: material_curso_garreta/00-alignments/00-bioinfo-alignments-algorithmDP.pdf
 [global-code]: material_curso_garreta/00-alignments/code/global_alignment.py
+
+[lesk]: biblio/lesk.pdf
+[lesk_fragment]: biblio/lesk_fragment.pdf
+[krane]: biblio/krane.pdf
+[krane_fragment]: biblio/krane_fragment.pdf
 
