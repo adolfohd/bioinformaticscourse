@@ -229,7 +229,7 @@ ___
 
 
 > make slides from:
-  - ["*Significance of Alignments*"][lesk_fragment]. [Introduction to Bioinformatics][lesk]¨ (Arthur M. Lesk) p.267 (Biblioteca PUJ).
+- ["*Significance of Alignments*"][lesk_fragment]. [Introduction to Bioinformatics][lesk]¨ (Arthur M. Lesk) p.267 (Biblioteca PUJ).
    - ["*Databases Searches*"][krane_fragment]. [Fundamental Concepts of Bioinformatics][krane] (Krane & Raymer) p.48. (PDF)
 
 
@@ -250,35 +250,33 @@ ___
 #### Gene finding and prediction
 
 - Genes have 
-	- Start
-	- Finish
-	- Parts
-		- exons
-		- codond (flags)
-			- start codons
-			- middle codons
-			- donor site
-	- Poly-A site
-		- very distinctive
-		
-		
+ - Start
+ - Finish
+ - Parts
+  - exons
+  - codond (flags)
+   - start codons
+   - middle codons
+   - donor site
+ - Poly-A site
+  - very distinctive
+
 
 #### Protein profile HMMs
 
  > complete this
- 
+
 ### HMM Architecture
 
 #### Finite state machine
 - Deterministic model
 - Markov assumption:
-	- Next state depends only on all previous states
+ - Next state depends only on all previous states
 - Order $n$ model
-	- Next state depends only on $n$ previous states
-	- Simplest: Order 1
-	
+ - Next state depends only on $n$ previous states
+ - Simplest: Order 1
 
-			
+
 #### State transition matrix
 
 
@@ -315,11 +313,11 @@ $\array{ & \bf{Seaweed} \\  \bf{Weather} &  Dry & Dryish & Damp & Soggy \\ Sun &
 
 
 - The first problem is to determine if a sequence of dice results belongs to our model 
-	- **Evaluation question of HMMs**
+ - **Evaluation question of HMMs**
 - What is the state of the dice (fair or loaded) for any given dice result?
-	- **Decoding question of HMMS**
+ - **Decoding question of HMMS**
 - How the state **transition** and the **emission** matrices change as more results are thrown by the croupier?
-	- **Learning question of HMMs**
+ - **Learning question of HMMs**
 
 ### Hidden states and observable sequence
 
@@ -336,7 +334,7 @@ $P(\pi_{t+1}= k | x_t $
 
 
 > **CpG islands**
- - Higer probability of finding a gene in subsequences containing a high ratio of C and G nucleotides.
+- Higer probability of finding a gene in subsequences containing a high ratio of C and G nucleotides.
 
 
 ### Problem 2: Decoding
@@ -346,7 +344,65 @@ $P(\pi_{t+1}= k | x_t $
 
 
 > **Homework**:
-Find ADN sequences with previously identified CpG islands.
+> Find ADN sequences with previously identified CpG islands.
+
+
+
+## March 29th, 2017
+
+
+
+Eucariots have start codons = **ATG**
+
+introns are not transcripted into RNA i.e. introns in DNA will not make part of ARN, much less of protein.
+
+**Gramatics of DNA**
+
+5'UTR-(EXON-INTRON)*-EXON-3'UTR
+
+EXONs have different structure than INTRON. This allows to search for them or predict their location based on this structure.
+
+
+
+> Polymerase performs the search of specific parts in DNA in order to... ???
+
+
+
+### Architecture:
+
+1. Next hidden state matrix: $A=$ probabilities given a current state
+2. Initial states: $\Pi=$ 
+3. Emissions matrix: $B=$ probabilities of a hidden state given an observable state
+
+
+
+### Markov's 3 problems
+
+1. **Evaluation**: how likely is the sequence explained by my model?
+
+2. **Decoding**: which portion of the sequence belongs to one state or other?
+
+3. **Learning**: e_{\pi_i} 
+
+   ​
+
+$P(x, \pi) = \prod_{i=1}^N a_{\pi_{i-1},\pi_{i} }e_{\pi_i} (x_i)$ 
+
+
+
+### Decoding
+
+
+
+
+
+
+
+
+
+
+
+
 
 [materialcurso]: material_curso_garreta/
 
