@@ -1,4 +1,4 @@
-# Module 2
+#### Module 2
 
 Welcome to my documentation of module 2, lectured by Dr. Luis Garreta.
 
@@ -250,15 +250,15 @@ ___
 #### Gene finding and prediction
 
 - Genes have 
- - Start
- - Finish
- - Parts
+- Start
+- Finish
+- Parts
   - exons
   - codond (flags)
-   - start codons
-   - middle codons
-   - donor site
- - Poly-A site
+  - start codons
+  - middle codons
+  - donor site
+- Poly-A site
   - very distinctive
 
 
@@ -271,10 +271,10 @@ ___
 #### Finite state machine
 - Deterministic model
 - Markov assumption:
- - Next state depends only on all previous states
+- Next state depends only on all previous states
 - Order $n$ model
- - Next state depends only on $n$ previous states
- - Simplest: Order 1
+- Next state depends only on $n$ previous states
+- Simplest: Order 1
 
 
 #### State transition matrix
@@ -313,11 +313,11 @@ $\array{ & \bf{Seaweed} \\  \bf{Weather} &  Dry & Dryish & Damp & Soggy \\ Sun &
 
 
 - The first problem is to determine if a sequence of dice results belongs to our model 
- - **Evaluation question of HMMs**
+- **Evaluation question of HMMs**
 - What is the state of the dice (fair or loaded) for any given dice result?
- - **Decoding question of HMMS**
+- **Decoding question of HMMS**
 - How the state **transition** and the **emission** matrices change as more results are thrown by the croupier?
- - **Learning question of HMMs**
+- **Learning question of HMMs**
 
 ### Hidden states and observable sequence
 
@@ -396,7 +396,135 @@ $P(x, \pi) = \prod_{i=1}^N a_{\pi_{i-1},\pi_{i} }e_{\pi_i} (x_i)$
 
 
 
+## April 7th, 2017
 
+> Pathways in protein structure
+
+
+
+Pathways are described by a relatively small amount of steps: 100-200 steps
+
+On the other hand, molecular dynamics usually present millions of steps.
+
+In pathways, multiple metrics are evaluated:
+
+- Energy (difficult)
+- External area of absorption
+- Quantity of natural contacts.
+- Hydrogen bonds
+- etc., typically up to **15 features**
+
+Problems?
+
+- Large amount of features
+  - How to reduce them? Maybe one variable is highly explained by other(s)
+  - Some non-measurable metrics can be estimated using others.
+- Large amount of molecular structures 
+  - How can we propose a smaller representative group? 
+  - How to get them?
+    - The Anton computer has produced large amount on which we can work.
+
+
+
+### Filtering and clustering
+
+
+
+
+
+> NCDI: Non-redundant database
+
+
+
+There are huge databases that, are very useful by themselves, but as users it is not feasible to download all data, due to bandwidth and storage constraints.
+
+>  Anton, David Shaw: Terabytes of information are generated in that database just for a 20 to 100 amino-acids protein
+
+
+
+> Free energy of a molecular structure
+>
+> Greedy: CD-Hit
+>
+> MUSCLE, UCLUST, USEARCH
+
+
+
+> Single linkage
+>
+> Complete-linkage: Very sensitive to outliers because the distance for decisions of clustering two groups is the one of the farthest away elements. 
+>
+> Average-linkage (=UPGMA)
+
+
+
+> Try in R:   plot(hclust(dist()), method="single" )
+
+
+
+### K-means
+
+
+
+> Lloyd's algorithm
+
+
+
+> Squared-error-distorsion (SED)
+
+
+
+> Bayesian clustering
+
+
+
+### Representative datasets
+
+
+
+
+
+
+
+> Hobbon's 2 algorithms
+>
+> 
+
+
+
+#### Hobbon1
+
+It is greedy in the sense that the very first element different enough from the others is considered to be the centroid of its cluster.
+
+#### CD-Hit (Li, et al.)
+
+It's a greedy method.
+
+- At any given point, the optimal is assumed to be the local solution.
+
+CDHIT is an open source program.
+
+MUSCLE replaces CLUSTALW (not open source - very closed in fact)
+
+> Application of each one?
+
+
+
+> Comparisson of k-mers? $\rightarrow$ Look for the generalities of this algorithm
+
+
+
+##### CDHIT basic algorithm
+
+$X={x_1,...x_n}$, $x_i$ is a short sequence of nucleotides (7 to 15 base pairs)
+
+
+
+The k-mer distance is measured using:
+
+> Bush
+>
+> Smith
 
 
 
