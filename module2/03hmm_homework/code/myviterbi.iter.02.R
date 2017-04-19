@@ -146,11 +146,3 @@ cat ("\n")
 
 save(theMostProbPath, file = "theMostProbPath.2")
 
-equal.paths = theMostProbPath.original == theMostProbPath.questionary
-
-plot(equal.paths)
-
-plot(theMostProbPath.original)
-
-states.numbers <- data.frame(states= c("H", "L"),
-                  nums= c(1:2))

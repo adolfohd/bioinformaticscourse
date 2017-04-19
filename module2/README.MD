@@ -516,6 +516,10 @@ MUSCLE replaces CLUSTALW (not open source - very closed in fact)
 
 ##### CDHIT basic algorithm
 
+- [How CD-HIT Works?][CDHIT]
+
+
+
 $X={x_1,...x_n}$, $x_i$ is a short sequence of nucleotides (7 to 15 base pairs)
 
 
@@ -528,7 +532,9 @@ The k-mer distance is measured using:
 
 
 
-
+> Homework: Implement CD-HIT
+>
+> - The distance can be a hamming
 
 
 
@@ -544,4 +550,5 @@ The k-mer distance is measured using:
 [krane_fragment]: 01slides/krane_fragment.pdf
 
 [01slides]: 01slides/01slides.pdf
+[CDHIT]: http://blog.nextgenetics.net/?e=26
 
