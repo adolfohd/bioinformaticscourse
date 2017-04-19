@@ -9,7 +9,7 @@ source("cd.hit.lib.R") # all methods used here for CDHIT
 pkgTest("data.table")
 
 sequences<-generate.random.dna.sequences(10,7,4)
-sequences <- c(sequences, sequences) # duplicate just for fun
+sequences <- c(sequences, sequences, sequences, sequences) # duplicate just for fun
 
 print("original sequences are:")
 print(sequences)

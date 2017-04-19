@@ -80,6 +80,8 @@ cd.hit <- function(sequences, threshold, k.mers){
     print(c("i=", i))
     print(c("non.ev =", non.evaluated.sequences))
     clusters[i]<- non.evaluated.sequences[1] # store the first non-evaluated sequence as a new cluster
+    print(c("clusters are", clusters))
+    sequence.labels[clusters[i]] <- clusters[i] # this cluster gives label to the corresponding sequence
     non.evaluated.sequences <- non.evaluated.sequences[-1] # and remove it from the sequences to be evaluated 
     print("after removing first item:")
     print(non.evaluated.sequences)
@@ -96,10 +98,11 @@ cd.hit <- function(sequences, threshold, k.mers){
       if(are.similar.sequences){
         print(c("similar!!, j=", j))
         print(sequences)
-        print(c("clusters are", clusters))
-        sequence.labels[j] <- i # assign the current cluster as label of the currently evaluated sequence
+        sequence.labels[j] <- clusters[i] # assign the current cluster as label of the currently evaluated sequence
         print(c("labels of sequences: ", sequence.labels))
-        non.evaluated.sequences <- non.evaluated.sequences[-j] # remove this similar sequence from the sequences to be evaluated
+        # non.evaluated.sequences <- non.evaluated.sequences[-j] # remove this similar sequence from the sequences to be evaluated
+        non.evaluated.sequences <- non.evaluated.sequences[ ! non.evaluated.sequences %in% j]
+        print(c("after similar sequence being removed:", non.evaluated.sequences))
       } # don't do anything if evaluated sequences do not belong to the evaluated clusters
     }
     i <- i + 1
