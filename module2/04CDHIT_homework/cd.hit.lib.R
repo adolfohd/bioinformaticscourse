@@ -72,40 +72,31 @@ cd.hit <- function(sequences, threshold, k.mers){
   N = length(sequences)
   print (c("N=", N))
   clusters    <- array()
+  cluster.sets <- list()
   non.evaluated.sequences <- 1:N # Here we store the indexes of the sequences that haven't been evaluated
   
   i <- 1
   sequence.labels <- array()
   while(length(non.evaluated.sequences)>0){ # As long as we still have sequences to evaluate
     print(c("i=", i))
-    print(c("non.ev =", non.evaluated.sequences))
     clusters[i]<- non.evaluated.sequences[1] # store the first non-evaluated sequence as a new cluster
-    print(c("clusters are", clusters))
     sequence.labels[clusters[i]] <- clusters[i] # this cluster gives label to the corresponding sequence
+    cluster.sets[[i]]<-array()
+    cluster.sets[[i]][1] <- names(sequences)[clusters[i]]
     non.evaluated.sequences <- non.evaluated.sequences[-1] # and remove it from the sequences to be evaluated 
-    print("after removing first item:")
-    print(non.evaluated.sequences)
     sequences.to.evaluate <- non.evaluated.sequences # this is to avoid the in-loop elimination to affect the loop's indexes
-    print("currently evaluating cluster:")
-    print(c("i=",i, "cluster=", clusters[i]))
     for (j in sequences.to.evaluate){ # every non-evaluated sequence
-      print("currently comparing with:")
-      print(c("j=", j))
       seq.a <- sequences[clusters[i]]
       seq.b <- sequences[j]
       are.similar.sequences = compare.sequences(seq.a, seq.b, k.mers, threshold)
-      
       if(are.similar.sequences){
         print(c("similar!!, j=", j))
-        print(sequences)
         sequence.labels[j] <- clusters[i] # assign the current cluster as label of the currently evaluated sequence
-        print(c("labels of sequences: ", sequence.labels))
-        # non.evaluated.sequences <- non.evaluated.sequences[-j] # remove this similar sequence from the sequences to be evaluated
-        non.evaluated.sequences <- non.evaluated.sequences[ ! non.evaluated.sequences %in% j]
-        print(c("after similar sequence being removed:", non.evaluated.sequences))
+        cluster.sets[[i]] <- c(cluster.sets[[i]], names(sequences)[j]) # add this sequence to the current cluster
+        non.evaluated.sequences <- non.evaluated.sequences[ ! non.evaluated.sequences %in% j] # remove this sequence so we don't evaluate it again
       } # don't do anything if evaluated sequences do not belong to the evaluated clusters
     }
     i <- i + 1
   }
-  return(list(clusters,sequence.labels))
+  return(list(clusters,sequence.labels, cluster.sets))
 }
