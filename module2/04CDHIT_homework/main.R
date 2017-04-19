@@ -9,6 +9,9 @@ source("cd.hit.lib.R") # all methods used here for CDHIT
 pkgTest("data.table")
 pkgTest ("bio3d")
 
+# sequences<-generate.random.dna.sequences(10,7,4) # in case we don't have any sequences to work with
+# sequences <- c(sequences, sequences, sequences, sequences) # duplicate just for fun
+
 library(bio3d)
 fastaFile = read.fasta ("DiceMini01.fasta")
 fasta.sequences <- as.matrix(fastaFile[[2]])
@@ -20,9 +23,6 @@ for (i in 1:nrow(fasta.sequences)){
 }
 names(sequences) <- rownames(fasta.sequences)
 
-# sequences<-generate.random.dna.sequences(10,7,4)
-# sequences <- c(sequences, sequences, sequences, sequences) # duplicate just for fun
-
 
 #---- the algorithm
 ordered.sequences <- order.sequences.by.length(sequences) # this should be inside "cd.hit" but let's keep it here
@@ -30,8 +30,10 @@ ordered.sequences <- order.sequences.by.length(sequences) # this should be insid
 print("ordered sequences:")
 print(ordered.sequences)
 
-threshold <- 0.6
-k.mers <- c(2) # the "k" values to be evaluated, 2-mers and 5-mers are the default in the CD-HIT algorithm
+threshold <- 0.8
+k.mers <- c(2,5) # the "k" values to be evaluated, 2-mers and 5-mers are the default in the CD-HIT algorithm
 cd.hit.results <- cd.hit(ordered.sequences, threshold, k.mers)
 
-print(cd.hit.results[[3]])
+cluster.sets <- cd.hit.results["cluster.sets"]
+
+print((cluster.sets))

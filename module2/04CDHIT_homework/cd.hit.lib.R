@@ -98,5 +98,5 @@ cd.hit <- function(sequences, threshold, k.mers){
     }
     i <- i + 1
   }
-  return(list(clusters,sequence.labels, cluster.sets))
+  return(list(clusters = clusters,labels = sequence.labels, cluster.sets = cluster.sets))
 }

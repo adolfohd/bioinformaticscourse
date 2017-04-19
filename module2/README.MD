@@ -537,6 +537,11 @@ The k-mer distance is measured using:
 > - The distance can be a hamming
 
 
+## April 19th, 2017
+
+
+
+
 
 [materialcurso]: material_curso_garreta/
 
