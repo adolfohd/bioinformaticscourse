@@ -27,7 +27,6 @@ summary(pathways.scores)
 colnames(pathways.scores)
 
 # Hierarchical clustering
-
 hierarch.clusters.reduced <- my.hclust(pathways.scores)
 hierarch.clusters.structural <- my.hclust(pathways.values)
 
@@ -42,7 +41,16 @@ hierarch.clusters.cut.structural <- cutree(hierarch.cluster.dendrogram.structura
 hierarch.clusters.table.reduced <- table(hierarch.clusters.cut.reduced)
 hierarch.clusters.table.structural <- table(hierarch.clusters.cut.structural)
 
-## Jackard coefficient
+# K-means
+kmeans.clusters.reduced <- kmeans(pathways.scores, centers = 4, nstart = 30)
+kmeans.clusters.reduced$cluster <- as.factor(kmeans.clusters.reduced$cluster)
+kmeans.clusters.structural <- kmeans(pathways.values, centers = 4, nstart = 30)
+kmeans.clusters.structural$cluster <- as.factor(kmeans.clusters.structural$cluster)
+
+kmeans.clusters.table.reduced <- table(kmeans.clusters.reduced$cluster)
+kmeans.clusters.table.structural <- table(kmeans.clusters.structural$cluster)
+
+# Jaccard coefficient
 
 my.jaccard.coefficient <- function(labels1, cluster1, labels2, cluster2){
   labels1.comparisson <- labels1 == cluster1
@@ -50,7 +58,7 @@ my.jaccard.coefficient <- function(labels1, cluster1, labels2, cluster2){
   return (sum(labels1.comparisson & labels2.comparisson ) / sum(labels1.comparisson | labels2.comparisson ))
 }
 
-my.jaccard.matrix <- function(labels1, labels2){
+my.jaccard.matrix <- function(labels1, labels2, k){
   labels1 <- as.array(labels1)
   labels2 <- as.array(labels2)
   jaccard.hierarchical  <- matrix(nrow = k, ncol = k)
@@ -70,63 +78,10 @@ my.jaccard.matrix <- function(labels1, labels2){
   return(list(jaccard.hierarchical, max.coeffs, max.coeffs.positions))
 }
 
-jaccard.matrix <- my.jaccard.matrix(hierarch.clusters.cut.structural, hierarch.clusters.cut.reduced)
-print(jaccard.matrix )
+jaccard.matrix.hierarchical <- my.jaccard.matrix(hierarch.clusters.cut.structural, hierarch.clusters.cut.reduced, k)
+print(jaccard.matrix.hierarchical)
 
+jaccard.matrix.kmeans <- my.jaccard.matrix(kmeans.clusters.structural$cluster, kmeans.clusters.reduced$cluster, k)
+print(jaccard.matrix.kmeans)
 # ---- PLOTS -----
-
-plot.colors <- rainbow_hcl(k)
-
-jpeg('../images/hierarch.dendrogram.structural.jpg')
-plot(hierarch.cluster.dendrogram.structural, main = "Hierarchical clustering, structural data")
-dev.off()
-
-jpeg('../images/hierarch.dendrogram.reduced.jpg')
-plot(hierarch.cluster.dendrogram.reduced, main = "Hierarchical clustering, reduced data")
-dev.off()
-
-jpeg('../images/hierarch.histogram.structural.jpg')
-bp <- barplot(hierarch.clusters.table.structural, col = plot.colors,
-              xlab = "clusters", ylab = "number of elements", 
-              main = "structural data: hierarchical clustering histogram")
-text(bp, 0, hierarch.clusters.table.structural, cex = 1, pos = 3)
-dev.off()
-
-jpeg('../images/hierarch.histogram.reduced.jpg')
-bp <- barplot(hierarch.clusters.table.reduced, col = plot.colors, 
-              xlab = "clusters", ylab = "number of elements", 
-              main = "reduced data: hierarchical clustering histogram")
-text(bp, 0, hierarch.clusters.table.reduced, cex = 1, pos = 3)
-dev.off()
-
-jpeg('../images/hierarchical.clustering.structural.jpg')
-ggplot(pathways.scores, aes(RC1, RC2, color = as.factor(hierarch.clusters.cut.structural))
-       ) + geom_point() + ggtitle("Structural data: Hierarchical clustering")
-dev.off()
-
-jpeg('../images/hierarchical.clustering.reduced.jpg')
-ggplot(pathways.scores, aes(RC1, RC2, color = as.factor(hierarch.clusters.cut.reduced))
-       ) + geom_point() + ggtitle("Reduced data: Hierarchical clustering")
-dev.off()
-
-# K-means
-
-kmeans.clusters.reduced <- kmeans(pathways.scores, centers = 4, nstart = 30)
-plot(kmeans.clusters.reduced)
-
-kmeans.clusters.table.reduced <- table(kmeans.clusters.reduced$cluster)
-
-kmeans.clusters.reduced$cluster <- as.factor(kmeans.clusters.reduced$cluster)
-
-
-
-## Plots
-
-jpeg('../images/kmeans.histogram.jpg')
-bp <- barplot(kmeans.clusters.table, col = plot.colors, xlab = "clusters", ylab = "number of elements", main = "histogram - kmeans")
-text(bp, 0, kmeans.clusters.table, cex = 1, pos = 3)
-dev.off()
-
-jpeg('../images/kmeans.clustering.jpg')
-ggplot(pathways.scores, aes(RC1, RC2, color = kmeans.clusters$cluster)) + geom_point() + ggtitle("K-means clustering results")
-dev.off()
+source("plots.R")
