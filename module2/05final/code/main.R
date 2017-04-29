@@ -53,18 +53,21 @@ my.jaccard.coefficient <- function(labels1, cluster1, labels2, cluster2){
 my.jaccard.matrix <- function(labels1, labels2){
   labels1 <- as.array(labels1)
   labels2 <- as.array(labels2)
-  jaccard.hierarchical <- matrix(nrow = k, ncol = k)
-  max.jaccards <- array()
+  jaccard.hierarchical  <- matrix(nrow = k, ncol = k)
+  max.coeffs.positions  <- array()
+  max.coeffs            <- array()
   for (i in 1:k){
-    max.jaccards[i] <- 0
+    max.coeffs.positions[i] <- 0
+    max.coeffs[i] <- 0
     for(j in 1:k){
       jaccard.hierarchical[i,j] <- my.jaccard.coefficient(labels1, i, labels2, j)
-      print(max.jaccards[i])
-      if (jaccard.hierarchical[i,j] > max.jaccards[i])
-        max.jaccards[i] <- j
+      if (jaccard.hierarchical[i,j] > max.coeffs[i]){
+        max.coeffs[i]           <- jaccard.hierarchical[i,j]
+        max.coeffs.positions[i] <- j
+      }
     }
   }
-  return(list(jaccard.hierarchical, max.jaccards))
+  return(list(jaccard.hierarchical, max.coeffs, max.coeffs.positions))
 }
 
 jaccard.matrix <- my.jaccard.matrix(hierarch.clusters.cut.structural, hierarch.clusters.cut.reduced)
