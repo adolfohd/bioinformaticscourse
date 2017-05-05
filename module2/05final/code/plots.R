@@ -23,7 +23,7 @@ text(bp, 0, hierarch.clusters.table.reduced, cex = 1, pos = 3)
 dev.off()
 
 jpeg('../images/hierarchical.clustering.structural.jpg')
-ggplot(pathways.scores, aes(RC1, RC2, color = as.factor(hierarch.clusters.cut.structural))
+ggplot(pathways.values, aes(RC1, RC2, color = as.factor(hierarch.clusters.cut.structural))
 ) + geom_point() + ggtitle("Structural data: Hierarchical clustering")
 dev.off()
 
@@ -46,7 +46,7 @@ text(bp, 0, kmeans.clusters.table.reduced, cex = 1, pos = 3)
 dev.off()
 
 jpeg('../images/kmeans.clustering.structural.jpg')
-ggplot(pathways.scores, aes(RC1, RC2, color = kmeans.clusters.structural$cluster)
+ggplot(pathways.values, aes(NC, CO, color = kmeans.clusters.structural$cluster)
        ) + geom_point() + ggtitle("Structural data: K-means clustering")
 dev.off()
 

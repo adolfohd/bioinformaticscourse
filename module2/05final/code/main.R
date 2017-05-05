@@ -1,6 +1,6 @@
 setwd("/media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module2/05final/code")
 rm(list = ls())
-source("/home/fito/code/fito_lib/r/pkgtest.R")
+source("~/code/fito_lib/r/pkgtest.R")
 
 my.install.packages <- function(pkg) if (!require(pkg)) install.packages(pkg);
 

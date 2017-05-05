@@ -1,0 +1,198 @@
+---
+title: "05Project_01"
+author: "Adolfo Hoyos Díaz"
+date: "May 4, 2017"
+output: html_document
+---
+
+# Dependencies
+
+```{r echo=FALSE}
+source("~/code/fito_lib/r/pkgtest.R")
+pkgTest('dendextend')
+pkgTest('colorspace')
+pkgTest('knitr')
+pkgTest('ggplot2')
+library(dendextend)
+library(colorspace)
+library(knitr)
+```
+
+# Load data
+
+We start by creating a variable to store the number of cluster on which we are basing our clustering analysis
+
+```{r}
+k <- 4
+```
+
+Now, we load the provided files:
+
+```{r}
+
+
+pathways.values <- as.data.frame(read.table("../data/pathways.values"))
+pathways.scores <- as.data.frame(read.table("../data/pathways.scores"))
+
+
+```
+
+And show some information about the **scores** file, which is a PCA version of the **pathways.values** file:
+
+```{r}
+summary(pathways.scores)
+colnames(pathways.scores)
+```
+
+
+
+
+# Hierarchical clustering
+
+In this section we will perform a hierarchical clustering of both datasets. For that, we define a function that does this using a complete hierarchical scheme, and Euclidean distance:
+
+```{r}
+my.hclust <- function(x, method = "complete", dmeth = "euclidean"){
+  hclust(dist(x, method = dmeth), method = method)
+}
+```
+
+
+And, of course, we apply this function to both datasets:
+
+```{r}
+hierarch.clusters.reduced <- my.hclust(pathways.scores)
+hierarch.clusters.structural <- my.hclust(pathways.values)
+```
+
+The name "*reduced*" refers to the reduced nature of the **scores** dataset, which was generated using PCA over the **pathways.values** file. The latter is an original dataset containing structural information.
+
+Now, we transform these datasets to dendogram representations and add some color
+
+```{r}
+hierarch.cluster.dendrogram.reduced <- as.dendrogram(hierarch.clusters.reduced)
+hierarch.cluster.dendrogram.reduced <- color_branches(hierarch.cluster.dendrogram.reduced, k = k)
+plot(hierarch.cluster.dendrogram.reduced, main = "Hierarchical clustering, reduced data")
+
+hierarch.cluster.dendrogram.structural <- as.dendrogram(hierarch.clusters.structural)
+hierarch.cluster.dendrogram.structural <- color_branches(hierarch.cluster.dendrogram.structural, k = k)
+plot(hierarch.cluster.dendrogram.structural, main = "Hierarchical clustering, structural data")
+
+```
+
+As this clusering method produces as much branches as datapoints, we cut these trees to only have *k* branches:
+
+```{r}
+hierarch.clusters.cut.reduced <- cutree(hierarch.cluster.dendrogram.reduced, k)
+hierarch.clusters.cut.structural <- cutree(hierarch.cluster.dendrogram.structural, k)
+```
+
+And we visualize both results
+
+```{r}
+ggplot(pathways.values, aes(NC, CO, color = as.factor(hierarch.clusters.cut.structural))
+) + geom_point() + ggtitle("Structural data: Hierarchical clustering")
+
+ggplot(pathways.scores, aes(RC1, RC2, color = as.factor(hierarch.clusters.cut.reduced))
+) + geom_point() + ggtitle("Reduced data: Hierarchical clustering")
+```
+
+Finally, we visualize how many datapoints were grouped in the clusters:
+
+```{r}
+plot.colors <- rainbow_hcl(k)
+
+hierarch.clusters.table.structural <- table(hierarch.clusters.cut.structural)
+bp <- barplot(hierarch.clusters.table.structural, col = plot.colors,
+              xlab = "clusters", ylab = "number of elements", 
+              main = "structural data: hierarchical clustering histogram")
+text(bp, 0, hierarch.clusters.table.structural, cex = 1, pos = 3)
+
+hierarch.clusters.table.reduced <- table(hierarch.clusters.cut.reduced)
+bp <- barplot(hierarch.clusters.table.reduced, col = plot.colors, 
+              xlab = "clusters", ylab = "number of elements", 
+              main = "reduced data: hierarchical clustering histogram")
+text(bp, 0, hierarch.clusters.table.reduced, cex = 1, pos = 3)
+```
+
+# K-means clustering
+
+```{r}
+
+kmeans.clusters.structural <- kmeans(pathways.values, centers = 4, nstart = 30)
+kmeans.clusters.structural$cluster <- as.factor(kmeans.clusters.structural$cluster)
+
+ggplot(pathways.values, aes(NC, CO, color = kmeans.clusters.structural$cluster)
+       ) + geom_point() + ggtitle("Structural data: K-means clustering")
+
+kmeans.clusters.reduced <- kmeans(pathways.scores, centers = 4, nstart = 30)
+kmeans.clusters.reduced$cluster <- as.factor(kmeans.clusters.reduced$cluster)
+
+ggplot(pathways.scores, aes(RC1, RC2, color = kmeans.clusters.reduced$cluster)
+) + geom_point() + ggtitle("Reduced data: K-means clustering")
+
+```
+
+
+
+```{r}
+kmeans.clusters.table.structural <- table(kmeans.clusters.structural$cluster)
+
+bp <- barplot(kmeans.clusters.table.structural, col = plot.colors, xlab = "clusters", ylab = "number of elements", 
+              main = "Structural data: k-means histrogram")
+text(bp, 0, kmeans.clusters.table.structural, cex = 1, pos = 3)
+
+kmeans.clusters.table.reduced <- table(kmeans.clusters.reduced$cluster)
+
+bp <- barplot(kmeans.clusters.table.reduced, col = plot.colors, xlab = "clusters", ylab = "number of elements", 
+              main = "Reduced data: k-means histrogram")
+text(bp, 0, kmeans.clusters.table.reduced, cex = 1, pos = 3)
+```
+
+# Jaccard coefficient
+
+```{r}
+my.jaccard.coefficient <- function(labels1, cluster1, labels2, cluster2){
+  labels1.comparisson <- labels1 == cluster1
+  labels2.comparisson <- labels2 == cluster2
+  return (sum(labels1.comparisson & labels2.comparisson ) / sum(labels1.comparisson | labels2.comparisson ))
+}
+```
+
+
+
+```{r}
+my.jaccard.matrix <- function(labels1, labels2, k){
+  labels1 <- as.array(labels1)
+  labels2 <- as.array(labels2)
+  jaccard.hierarchical  <- matrix(nrow = k, ncol = k)
+  max.coeffs.positions  <- array()
+  max.coeffs            <- array()
+  for (i in 1:k){
+    max.coeffs.positions[i] <- 0
+    max.coeffs[i] <- 0
+    for(j in 1:k){
+      jaccard.hierarchical[i,j] <- my.jaccard.coefficient(labels1, i, labels2, j)
+      if (jaccard.hierarchical[i,j] > max.coeffs[i]){
+        max.coeffs[i]           <- jaccard.hierarchical[i,j]
+        max.coeffs.positions[i] <- j
+      }
+    }
+  }
+  return(list(jaccard.hierarchical, max.coeffs, max.coeffs.positions))
+}
+```
+
+
+
+```{r}
+
+jaccard.matrix.hierarchical <- my.jaccard.matrix(hierarch.clusters.cut.structural, hierarch.clusters.cut.reduced, k)
+print(jaccard.matrix.hierarchical)
+```
+
+
+```{r}
+jaccard.matrix.kmeans <- my.jaccard.matrix(kmeans.clusters.structural$cluster, kmeans.clusters.reduced$cluster, k)
+print(jaccard.matrix.kmeans)
+```
