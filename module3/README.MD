@@ -5,7 +5,7 @@
 
 ## May 5th, 2017
 
-### Non codifying RNA
+### Non coding RNA
 
 Results are still very dependant on laboratory studies that have not been carried on.
 

@@ -1,4 +1,4 @@
-setwd("/media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module2/05final/code")
+setwd("~/code/doc/bioinformaticscourse/module2/05final/code")
 rm(list = ls())
 source("~/code/fito_lib/r/pkgtest.R")
 
