@@ -28,6 +28,4 @@ for (i in 1:2){
 }
 Sys.sleep(1)
 close(pb)
-
 save.image(file = "data/.Rdata")
-save.image()
