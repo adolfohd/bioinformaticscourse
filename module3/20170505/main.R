@@ -1,4 +1,7 @@
 setwd("~/code/doc/bioinformaticscourse/module3/20170505/")
+
+# load("/media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module3/20170505/.RData")
+
 rm(list = ls())
 source("~/code/fito_lib/r/pkgtest.R")
 
@@ -17,15 +20,25 @@ non.coding.rna <- as.data.frame(matrix(c(gene.ids, gene.info), ncol = 2, byrow =
 colnames(non.coding.rna) <- c("gene.id", "gene.info")
 head(non.coding.rna)
 
-rna.gene.info <- list()
+noncodingrna.geneinfoindexes <- array()
 pb <- txtProgressBar(min = 0, max = nrow(non.coding.rna), style = 3)
-# for (i in 1:nrow(non.coding.rna)){
-for (i in 1:2){
-  rna.gene.info[[i]] <- seq.gene.md[grepl(paste("GeneID:", gene.ids[i], "$", sep=""), seq.gene.md$feature_id),] 
+for (i in 1:nrow(non.coding.rna)){
+# for (i in 1:2){
+  noncodingrna.geneinfoindexes[i] <- 
+    as.array(
+      as.numeric(
+        which(
+          grepl(paste("GeneID:", non.coding.rna$gene.id[i], "$", sep=""), seq.gene.md$feature_id) &
+            grepl("^GENE", seq.gene.md$feature_type) &
+            grepl("^GRCh38.", seq.gene.md$group_label) 
+          )))
+  print(noncodingrna.geneinfoindexes[i])
   Sys.sleep(0.1)
   setTxtProgressBar(pb, i)
 }
 Sys.sleep(1)
 close(pb)
-save.image(file = "data/.Rdata")
+save.image()
+
+
 
