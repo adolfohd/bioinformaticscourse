@@ -1,13 +1,12 @@
-setwd("~/code/doc/bioinformaticscourse/module3/20170505/")
-
 # load("/media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module3/20170505/.RData")
 
 rm(list = ls())
-source("~/code/fito_lib/r/pkgtest.R")
+# source("~/code/fito_lib/r/pkgtest.R")
 
-rna.q           <- readLines("../data/humangenome/rna.q")
-# seq.gene.md     <- readLines("../data/humangenome/seq_gene.md")
-seq.gene.md           <- read.csv("../data/humangenome/seq_gene.md", sep = "\t")
+# rna.q           <- readLines("../data/humangenome/rna.q")
+rna.q           <- readLines("rna.q")
+# seq.gene.md           <- read.csv("../data/humangenome/seq_gene.md", sep = "\t")
+seq.gene.md           <- read.csv("seq_gene.md", sep = "\t")
 
 
 non.coding.rna.brute  <- rna.q[grepl("non-coding RNA", rna.q, fixed = T)]
@@ -38,7 +37,3 @@ for (i in 1:nrow(non.coding.rna)){
 }
 Sys.sleep(1)
 close(pb)
-save.image()
-
-
-

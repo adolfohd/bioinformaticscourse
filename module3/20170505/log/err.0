@@ -1,0 +1,10 @@
+WARNING: Your kernel does not support swap limit capabilities, memory limited without swap.
+Error in gzfile(file, "wb") : cannot open the connection
+Calls: save.image -> save -> gzfile
+In addition: Warning message:
+In gzfile(file, "wb") :
+  cannot open compressed file 'data/.RdataTmp', probable reason 'No such file or directory'
+Execution halted
+Warning message:
+In file.remove(outfile) :
+  cannot remove file 'data/.RdataTmp', reason 'No such file or directory'

@@ -1,0 +1,18 @@
+universe                = docker
+docker_image            = fitohd/thesis_r
+executable              = Rscript
+arguments               = main.R
+should_transfer_files   = YES
+transfer_input_files    = main.R, ../data/humangenome/, data/
+transfer_output_files   = .RData
+when_to_transfer_output = ON_EXIT
+output                  = log/out.$(Process)
+error                   = log/err.$(Process)
+log                     = log/log.$(Process)
+MAX_I = 100 
+MAX_J = 10
+N = MAX_I * MAX_J
+I = ($(Process) / $(MAX_J))+1
+J = ($(Process) % $(MAX_J))+1
+
+queue 1
