@@ -146,3 +146,6 @@ ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) +
   scale_fill_manual("Chromosome", breaks = 1:39, values = colors(1:39)) +
   theme_bw()
 
+
+save.image()
+

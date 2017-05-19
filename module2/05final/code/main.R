@@ -1,3 +1,4 @@
+
 setwd("~/code/doc/bioinformaticscourse/module2/05final/code")
 rm(list = ls())
 source("~/code/fito_lib/r/pkgtest.R")
@@ -28,27 +29,27 @@ colnames(pathways.scores)
 
 # Hierarchical clustering
 hierarch.clusters.reduced <- my.hclust(pathways.scores)
-hierarch.clusters.structural <- my.hclust(pathways.values)
+hierarch.clusters.complete <- my.hclust(pathways.values)
 
 hierarch.cluster.dendrogram.reduced <- as.dendrogram(hierarch.clusters.reduced)
 hierarch.cluster.dendrogram.reduced <- color_branches(hierarch.cluster.dendrogram.reduced, k = k)
-hierarch.cluster.dendrogram.structural <- as.dendrogram(hierarch.clusters.structural)
-hierarch.cluster.dendrogram.structural <- color_branches(hierarch.cluster.dendrogram.structural, k = k)
+hierarch.cluster.dendrogram.complete <- as.dendrogram(hierarch.clusters.complete)
+hierarch.cluster.dendrogram.complete <- color_branches(hierarch.cluster.dendrogram.complete, k = k)
 
 hierarch.clusters.cut.reduced <- cutree(hierarch.cluster.dendrogram.reduced, k)
-hierarch.clusters.cut.structural <- cutree(hierarch.cluster.dendrogram.structural, k)
+hierarch.clusters.cut.complete <- cutree(hierarch.cluster.dendrogram.complete, k)
 
 hierarch.clusters.table.reduced <- table(hierarch.clusters.cut.reduced)
-hierarch.clusters.table.structural <- table(hierarch.clusters.cut.structural)
+hierarch.clusters.table.complete <- table(hierarch.clusters.cut.complete)
 
 # K-means
 kmeans.clusters.reduced <- kmeans(pathways.scores, centers = 4, nstart = 30)
 kmeans.clusters.reduced$cluster <- as.factor(kmeans.clusters.reduced$cluster)
-kmeans.clusters.structural <- kmeans(pathways.values, centers = 4, nstart = 30)
-kmeans.clusters.structural$cluster <- as.factor(kmeans.clusters.structural$cluster)
+kmeans.clusters.complete <- kmeans(pathways.values, centers = 4, nstart = 30)
+kmeans.clusters.complete$cluster <- as.factor(kmeans.clusters.complete$cluster)
 
 kmeans.clusters.table.reduced <- table(kmeans.clusters.reduced$cluster)
-kmeans.clusters.table.structural <- table(kmeans.clusters.structural$cluster)
+kmeans.clusters.table.complete <- table(kmeans.clusters.complete$cluster)
 
 # Jaccard coefficient
 
@@ -78,10 +79,10 @@ my.jaccard.matrix <- function(labels1, labels2, k){
   return(list(jaccard.hierarchical, max.coeffs, max.coeffs.positions))
 }
 
-jaccard.matrix.hierarchical <- my.jaccard.matrix(hierarch.clusters.cut.structural, hierarch.clusters.cut.reduced, k)
+jaccard.matrix.hierarchical <- my.jaccard.matrix(hierarch.clusters.cut.complete, kmeans.clusters.complete$cluster, k)
 print(jaccard.matrix.hierarchical)
 
-jaccard.matrix.kmeans <- my.jaccard.matrix(kmeans.clusters.structural$cluster, kmeans.clusters.reduced$cluster, k)
+jaccard.matrix.kmeans <- my.jaccard.matrix(hierarch.clusters.cut.reduced, kmeans.clusters.reduced$cluster, k)
 print(jaccard.matrix.kmeans)
 # ---- PLOTS -----
 source("plots.R")
