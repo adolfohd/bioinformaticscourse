@@ -1,0 +1,13 @@
+000 (7561.000.000) 05/06 01:36:19 Job submitted from host: <138.122.201.207:443?PrivAddr=%3c192.168.28.105:443%3fsock%3d188737_c6ad_5%3e&PrivNet=univalle.edu.co&addrs=138.122.201.207-443&noUDP&sock=188737_c6ad_5>
+...
+001 (7561.000.000) 05/06 01:36:25 Job executing on host: <192.168.28.51:40335?addrs=192.168.28.51-40335>
+...
+007 (7561.000.000) 05/06 01:37:41 Shadow exception!
+	Error from slot1@uvcluster-02.cloud.univalle.edu.co: STARTER at 192.168.28.51 failed to send file(s) to <192.168.28.105:443>: error reading from /var/lib/condor/execute/dir_4105465/.RData: (errno 2) No such file or directory; SHADOW failed to receive file(s) from <192.168.28.51:60350>
+	1396  -  Run Bytes Sent By Job
+	455068288  -  Run Bytes Received By Job
+...
+012 (7561.000.000) 05/06 01:37:41 Job was held.
+	Error from slot1@uvcluster-02.cloud.univalle.edu.co: STARTER at 192.168.28.51 failed to send file(s) to <192.168.28.105:443>: error reading from /var/lib/condor/execute/dir_4105465/.RData: (errno 2) No such file or directory; SHADOW failed to receive file(s) from <192.168.28.51:60350>
+	Code 13 Subcode 2
+...
