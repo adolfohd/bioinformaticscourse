@@ -1,5 +1,5 @@
 # load("/media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module3/20170505/.RData")
-
+setwd("~/code/doc/bioinformaticscourse/module3/20170505")
 rm(list = ls())
 # source("~/code/fito_lib/r/pkgtest.R")
 
@@ -63,6 +63,29 @@ colnames(noncodinggenes.length) <- "chr_length"
 noncodingrna.positioninfo$chr_length <- noncodinggenes.length
 head(noncodingrna.positioninfo)
 
+# Since there are columns filled with NA values:
+
+noncodingrna.positioninfo[is.na(noncodingrna.positioninfo$chromosome),]
+
+# Let's take them away
+noncodingrna.positioninfo <- noncodingrna.positioninfo[!is.na(noncodingrna.positioninfo),]
+
+# In order to be able to show highlight which genes belong to each chromosomo, we're going to
+# clean the chromosome labels, since there are some duplicates in its unique values:
+uni <- unique(noncodingrna.positioninfo$chromosome)
+print(uni)
+
+only.numeric.chromosome.indexes <- uni[grepl("^\\d+$", uni)]
+for (i in only.numeric.chromosome.indexes){
+  noncodingrna.positioninfo$chromosome[grepl(paste("^",i,"\\|", sep = ""), noncodingrna.positioninfo$chromosome)] <- i
+}
+# Assign the label "Un" to all choromosomes with names starting with "Un"
+noncodingrna.positioninfo$chromosome[grepl("Un", noncodingrna.positioninfo$chromosome)]
+
+noncodingrna.positioninfo$chromosome <- as.character(noncodingrna.positioninfo$chromosome)
+noncodingrna.positioninfo$chromosome[grepl("Un", noncodingrna.positioninfo$chromosome)] <- "Un"
+unique(noncodingrna.positioninfo$chromosome)
+
 # lets divide the range of lengths in N segments so we can plot a histogram
 n.intervals <- 100
 max_length  <- max(noncodingrna.positioninfo$chr_length, na.rm = T)
@@ -70,82 +93,30 @@ min_length  <- min(noncodingrna.positioninfo$chr_length, na.rm = T)
 length.range <- max_length - min_length
 interval    <- length.range/n.intervals
 
-# count values in every interval
-
-histogram <- array()
-x.axis <- array()
-for (i in 1:nrow(noncodingrna.positioninfo)){
-  current.position <- noncodingrna.positioninfo$chr_length[i]
-  target.histogram.value <- 1 + 
-                            round(
-                              (current.position - min_length)/length.range * n.intervals
-                              , 0)
-  if (is.na(histogram[target.histogram.value]))
-    histogram[target.histogram.value] <- 1
-  else
-    histogram[target.histogram.value] <- histogram[target.histogram.value] + 1
-}
-
-for (i in 1:n.intervals+1)
-  x.axis[i] <- min_length + interval*(i-1)
-
-plot(x.axis[1:20], histogram[1:20], type = "l")
-
+library(ggplot2) #load the ggplot2 graph package
+ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) + 
+  geom_histogram(
+    breaks=seq(minimum.length, maximum.length,by=step.size),
+    colour='black') + 
+  xlab("Average Frequency") + ylab("Count of gene lengths") +
+  # scale_fill_manual("Chromosome", breaks = 1:39, values = colors(1:39)) +
+  theme_bw()
 
 # This showed us that the majority of non-coding genes are relatively short, so we are only 
 # going to compute the histogram in lengths in steps of only 100, up to 10,000.
+step.size <- 100
+maximum.length <- 1000
+minimum.length <- 0
 
-histogram <- array()
-x.axis <- array()
-n.intervals <- 100
-max_length  <- 10000
-min_length  <- 0
-length.range <- max_length - min_length
-interval    <- length.range/n.intervals
-for (i in 1:nrow(noncodingrna.positioninfo)){
-  current.length <- noncodingrna.positioninfo$chr_length[i]
-  if (current.length < max_length && !is.na(current.length)){
-    target.histogram.value <- 1 + 
-      floor(
-        (current.length - min_length)/length.range * n.intervals)
-    if (is.na(histogram[target.histogram.value]))
-      histogram[target.histogram.value] <- 1
-    else
-      histogram[target.histogram.value] <- histogram[target.histogram.value] + 1
-
-  }
-}
-
-for (i in 1:n.intervals+1)
-  x.axis[i] <- min_length + interval*(i-1)
-
-plot(x.axis[1:20], histogram[1:20], type = "l")
-
-
-
-
-###
-
-
-# plot(hist(noncodingrna.positioninfo$chr_length, xlim = c(0,1000)))
-# plot(density(noncodingrna.positioninfo$chr_length, na.rm = T, from = 0, to = 100000, n = 100))
-
-data <- as.data.frame(noncodingrna.positioninfo$chr_length)
-
+jpeg('images/histogram.jpg')
 library(ggplot2) #load the ggplot2 graph package
-
-ggplot(noncodingrna.positioninfo, aes(x=chr_length)) + 
-  geom_histogram(breaks=seq(0,100000,by=100),colour='black') + 
-  xlab("Average Frequency") + ylab("Count of USER.ID") +
-  scale_fill_manual("Group", breaks = c("1","2","3"), values = c("grey30","grey50", "grey70")) +
-  theme_bw()
-
 ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) + 
-  geom_histogram(bresaks=seq(0,100,by=100),colour='black') + 
+  geom_histogram(
+    breaks=seq(minimum.length, maximum.length,by=step.size),
+    colour='black') + 
   xlab("Average Frequency") + ylab("Count of gene lengths") +
-  scale_fill_manual("Chromosome", breaks = 1:39, values = colors(1:39)) +
+  # scale_fill_manual("Chromosome", breaks = 1:39, values = colors(1:39)) +
   theme_bw()
+dev.off()
 
-
-save.image()
 
