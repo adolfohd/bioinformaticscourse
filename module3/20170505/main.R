@@ -88,10 +88,10 @@ unique(noncodingrna.positioninfo$chromosome)
 
 # lets divide the range of lengths in N segments so we can plot a histogram
 n.intervals <- 100
-max_length  <- max(noncodingrna.positioninfo$chr_length, na.rm = T)
-min_length  <- min(noncodingrna.positioninfo$chr_length, na.rm = T)
+maximum.length  <- max(noncodingrna.positioninfo$chr_length, na.rm = T)
+minimum.length  <- min(noncodingrna.positioninfo$chr_length, na.rm = T)
 length.range <- max_length - min_length
-interval    <- length.range/n.intervals
+step.size    <- length.range/n.intervals
 
 library(ggplot2) #load the ggplot2 graph package
 ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) + 
@@ -104,19 +104,35 @@ ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) +
 
 # This showed us that the majority of non-coding genes are relatively short, so we are only 
 # going to compute the histogram in lengths in steps of only 100, up to 10,000.
-step.size <- 100
-maximum.length <- 1000
+
+n.intervals <- 30
+maximum.length <- 20000
 minimum.length <- 0
+
+length.range <- maximum.length - minimum.length
+step.size <- length.range/n.intervals
+
+# Assure that the chromosome column is taken as factor
+noncodingrna.positioninfo$chromosome <- as.factor(noncodingrna.positioninfo$chromosome)
+
+ordered.chromosome.indexes =c(1,12,
+  16:22,
+  2:11,
+  13:15,24, 25, 23)
+ordered.chr.levels <- levels(noncodingrna.positioninfo$chromosome)[ordered.chromosome.indexes]
+noncodingrna.positioninfo$chromosome <- factor(noncodingrna.positioninfo$chromosome, ordered.chr.levels)
 
 jpeg('images/histogram.jpg')
 library(ggplot2) #load the ggplot2 graph package
+breaks.plot = seq(minimum.length, maximum.length,by=step.size)
 ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) + 
   geom_histogram(
-    breaks=seq(minimum.length, maximum.length,by=step.size),
-    colour='black') + 
-  xlab("Average Frequency") + ylab("Count of gene lengths") +
-  # scale_fill_manual("Chromosome", breaks = 1:39, values = colors(1:39)) +
-  theme_bw()
+    breaks=breaks.plot,
+    colour='black') +
+  stat_bin(breaks = breaks.plot, geom="text", colour="white", size=2, 
+           aes(label=factor(chromosome), fill=factor(chromosome), y=..count.. - .2), drop = T) +
+  scale_x_continuous(breaks=round(breaks.plot,0)) +
+  theme(axis.text.x = element_text(angle=90))
+          #axis.text.y = element_text(face="bold", color="#993333", 
+           #                          size=14, angle=45))
 dev.off()
-
-
