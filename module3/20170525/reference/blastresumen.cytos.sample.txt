@@ -1,0 +1,6 @@
+Nodo1	Nodo2	Similarity	Repet
+non-coding_RNA|LOC100506085|Nosynon	non-coding_RNA|LOC284865|Nosynon	87.05	1
+long_non-coding_RNA|LOC729652|Nosynon	non-coding_RNA|LOC100505576|Nosynon	84.11	2
+long_non-coding_RNA|STAU2-AS1|Nosynon	non-coding_RNA|LOC100507173|Nosynon	85.755	2
+long_non-coding_RNA|EIF2B5-AS1|Nosynon	non-coding_RNA|LAIR1|Nosynon	89.89	1
+non-coding_RNA|LOC284950|Nosynon	non-coding_RNA|SLC25A32|Synom:mitochondrial_folate_carrier	86.0	1
