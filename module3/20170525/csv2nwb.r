@@ -22,7 +22,7 @@ to.nwb <- function(filename){
   lines <- c(lines, paste("*UndirectedEdges", nrow(dataset)))
   lines <- c(lines, paste("source*int target*int ", colnames(dataset)[3], "*float", sep = ""))
   
-  print(nrow(dataset))
+  print(paste(nrow(dataset), "rows read."))
   
   node.relationship.columns <- c(
     as.character(as.numeric(dataset$node1)),
@@ -43,6 +43,7 @@ to.nwb <- function(filename){
   }
   Sys.sleep(1)
   close(pb)
+  print("Processing complete")
   
   lines <- c(lines, morelines)
   #comment.lines     <- grep("(^#.+)|(^$)", lines)
@@ -57,4 +58,5 @@ save.lines.tofile <- function(lines, filename){
   file.connection <-file(filename.output)
   writeLines(lines, filename.output)
   close(file.connection)
+  print(paste("File", filename.output, "saved in work directory."))
 }
