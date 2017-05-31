@@ -16,7 +16,7 @@ to.nwb <- function(filename){
   lines[2] <- paste(lines[2], length(unique.levels))
   i <- 1
   for (unique.node in unique.levels){
-    lines <- c(lines, paste(i, unique.node))
+    lines <- c(lines, paste(i, ' "',unique.node, '"', sep = ""))
     i <- i+1
   }
   lines <- c(lines, paste("*UndirectedEdges", nrow(dataset)))
@@ -34,26 +34,22 @@ to.nwb <- function(filename){
   one.percent <- ceiling(nrow(dataset)/100)
   for (i in 1: nrow(dataset)){
     morelines[i] <- paste(
-      node.relationship.columns[i],
-      node.relationship.columns[i + nrow(dataset)],
-      node.relationship.columns[i + 2*nrow(dataset)]
+      node.relationship.columns[i],                  # Source node indexes
+      node.relationship.columns[i + nrow(dataset)],  # Target node indexes
+      node.relationship.columns[i + 2*nrow(dataset)] # Weights
     )
-    if (! (i %% one.percent))
+    if (! (i %% one.percent)) # limit updates of progress bar every time a percent of the job is complete
       setTxtProgressBar(pb, i)
   }
   Sys.sleep(1)
   close(pb)
   print("Processing complete")
-  
   lines <- c(lines, morelines)
-  #comment.lines     <- grep("(^#.+)|(^$)", lines)
-  #removal.condition <- length(comment.lines)!=0
-  #if (removal.condition)
-  #  lines <- lines[-comment.lines]
   return(lines)
 }
 
 save.lines.tofile <- function(lines, filename){
+  library(stringr)
   filename.output <- paste(str_extract(filename, "(?<=/)(.*?)(?=\\.)"), ".nwb", sep = "")
   file.connection <-file(filename.output)
   writeLines(lines, filename.output)
