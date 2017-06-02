@@ -7,8 +7,8 @@ to.nwb <- function(filename){
   colnames(dataset)[2] <- "node2"
   colnames(dataset)[3] <- "weight"
   colnames(dataset)[4] <- "repeat"
+
   # erase comment and empty lines
-  
   unique.levels <- union(levels(dataset$node1), levels(dataset$node2))
   lines[2] <- paste(lines[2], length(unique.levels))
   i <- 1
@@ -20,7 +20,6 @@ to.nwb <- function(filename){
   lines <- c(lines, paste("source*int target*int ", colnames(dataset)[3], "*float", sep = ""))
   
   print(paste(nrow(dataset), "rows read."))
-  
   node.relationship.columns <- c(
     as.character(as.numeric(dataset$node1)),
     as.character(as.numeric(dataset$node2)),
@@ -42,8 +41,6 @@ to.nwb <- function(filename){
   close(pb)
   print("Processing complete")
   lines <- c(lines, morelines)
-  
-  save.lines.tofile(lines = lines, filename = filename)
   return(lines)
 }
 

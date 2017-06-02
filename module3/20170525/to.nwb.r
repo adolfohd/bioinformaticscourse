@@ -7,20 +7,19 @@ to.nwb <- function(filename){
   colnames(dataset)[2] <- "node2"
   colnames(dataset)[3] <- "weight"
   colnames(dataset)[4] <- "repeat"
+
   # erase comment and empty lines
-  
   unique.levels <- union(levels(dataset$node1), levels(dataset$node2))
   lines[2] <- paste(lines[2], length(unique.levels))
   i <- 1
   for (unique.node in unique.levels){
-    lines <- c(lines, paste(i, ' "',unique.node, '"', sep = "\t"))
+    lines <- c(lines, paste(i, '\t"',unique.node, '"', sep = ""))
     i <- i+1
   }
   lines <- c(lines, paste("*UndirectedEdges", nrow(dataset)))
   lines <- c(lines, paste("source*int target*int ", colnames(dataset)[3], "*float", sep = ""))
   
   print(paste(nrow(dataset), "rows read."))
-  
   node.relationship.columns <- c(
     as.character(as.numeric(dataset$node1)),
     as.character(as.numeric(dataset$node2)),
@@ -34,7 +33,7 @@ to.nwb <- function(filename){
       node.relationship.columns[i],                  # Source node indexes
       node.relationship.columns[i + nrow(dataset)],  # Target node indexes
       node.relationship.columns[i + 2*nrow(dataset)] # Weights
-    , sep = "\t")
+      , sep = "\t")
     if (! (i %% one.percent)) # limit updates of progress bar every time a percent of the job is complete
       setTxtProgressBar(pb, i)
   }
@@ -42,8 +41,6 @@ to.nwb <- function(filename){
   close(pb)
   print("Processing complete")
   lines <- c(lines, morelines)
-  
-  save.lines.tofile(lines = lines, filename = filename)
   return(lines)
 }
 

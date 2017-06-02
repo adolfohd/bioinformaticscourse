@@ -56,7 +56,7 @@ for (i in 1:k){
        main = (paste("Cluster", i, ": ", n.items[i] , " items")),
        xlab = ("Number of interactions"),
        ylab = ("Average Length")
-       )
+  )
   dev.off()
 }
 
