@@ -71,4 +71,6 @@ best.cluster <- readline("Please analize the plots in images/clusters/, and inpu
 
 filtered.dataset <- n.interactions.dataset[kmeans.clustering$cluster==best.cluster,]
 
+write.csv(filtered.dataset, "filtered.dataset.csv")
+
 
