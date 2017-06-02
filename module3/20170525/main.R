@@ -8,4 +8,4 @@ filename <- "reference/blastresumen.cytos.txt"
 
 source("csv2nwb.r")
 lines.tosave <- to.nwb(filename)
-save.lines.tofile(lines = lines.tosave, filename = filename)
+# save.lines.tofile(lines = lines.tosave, filename = filename)

@@ -9,10 +9,7 @@ to.nwb <- function(filename){
   colnames(dataset)[4] <- "repeat"
   # erase comment and empty lines
   
-  if(sum(levels(dataset$node1) != levels(dataset$node2)))
-    return (NA)
-  else
-    unique.levels <- levels(dataset$node1)
+  unique.levels <- union(levels(dataset$node1), levels(dataset$node2))
   lines[2] <- paste(lines[2], length(unique.levels))
   i <- 1
   for (unique.node in unique.levels){
@@ -45,6 +42,8 @@ to.nwb <- function(filename){
   close(pb)
   print("Processing complete")
   lines <- c(lines, morelines)
+  
+  save.lines.tofile(lines = lines, filename = filename)
   return(lines)
 }
 
