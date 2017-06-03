@@ -15,11 +15,13 @@ n.interactions.dataset$log.bitscore         <- as.numeric(log(as.numeric(n.inter
 
 # All
 source("plot.interactions.histogram.r")
-#plot.interactions.histogram(n.interactions.dataset, 25)
-
+jpeg("images/histograms/interaction.histogram.jpg")
+plot.interactions.histogram(n.interactions.dataset, 25)
+dev.off()
 source("plot.length.histogram.r")
-#plot.length.histogram(n.interactions.dataset, 25)
-
+jpeg("images/histograms/length.histogram.jpg")
+plot.length.histogram(n.interactions.dataset, 25)
+dev.off()
 #plot(x=n.interactions.dataset$interactions, n.interactions.dataset$mean.query.length, log = "xy")
 
 k <- 5
@@ -72,5 +74,14 @@ best.cluster <- readline("Please analize the plots in images/clusters/, and inpu
 filtered.dataset <- n.interactions.dataset[kmeans.clustering$cluster==best.cluster,]
 
 write.csv(filtered.dataset, "filtered.dataset.csv")
+
+# Now we need to look for these IDs in the next source file
+
+source.cytos.dataset <- read.csv("../20170525/reference/blastresumen.cytos.txt", sep = "\t")
+
+
+grepl(source.cytos.dataset$Nodo1[1], rownames(filtered.dataset))
+
+
 
 

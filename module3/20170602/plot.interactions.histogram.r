@@ -9,9 +9,11 @@ plot.interactions.histogram <- function(n.interactions.dataset, n.intervals){
   
   library(ggplot2) #load the ggplot2 graph package
   ggplot(n.interactions.dataset, aes(x=interactions)) + 
+    labs(x = "Number of Interactions", y = "Node Count", title = "Histogram of Number of Node Interaction") +
+    theme(axis.text.x = element_text(angle=90)) +
     geom_histogram(
       breaks=breaks.plot,
-      colour='black') +
+      colour='orange') +
     stat_bin(breaks = breaks.plot, binwidth=1, geom="text", aes(label=..count..), vjust=-1.5) +
     scale_x_continuous(breaks=round(breaks.plot,0)) 
 }
