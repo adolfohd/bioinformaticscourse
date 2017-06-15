@@ -50,8 +50,7 @@ jpeg("images/kalinskicriterion.jpg")
 dev.off()
 
 
-k <- 6
-d<-n.interactions.dataset[,c(8,9)]
+k <- 6 # Best K accorrding to both methods
 d <- as.data.frame(d)
 kmeans.clustering <- kmeans(d, centers = k)
 
