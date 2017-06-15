@@ -46,11 +46,11 @@ to.nwb <- function(filename){
   for (i in 1: nrow(dataset)){
     morelines[i] <- node.relationship.columns[i]
     for (j in 1:((ncol(dataset))-1)){
-    morelines[i] <- paste(morelines[i], node.relationship.columns[i + j*nrow(dataset)], sep = "\t")
-     # node.relationship.columns[i],                  # Source node indexes
-    #  node.relationship.columns[i + nrow(dataset)],  # Target node indexes
-    #  node.relationship.columns[i + 2*nrow(dataset)] # Weights
-    #  , sep = "\t")
+      morelines[i] <- paste(morelines[i], node.relationship.columns[i + j*nrow(dataset)], sep = "\t")
+      # node.relationship.columns[i],                  # Source node indexes
+      #  node.relationship.columns[i + nrow(dataset)],  # Target node indexes
+      #  node.relationship.columns[i + 2*nrow(dataset)] # Weights
+      #  , sep = "\t")
     }
     if (! (i %% one.percent)) # limit updates of progress bar every time a percent of the job is complete
       setTxtProgressBar(pb, i)

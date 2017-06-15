@@ -1,3 +1,4 @@
+source	target	similarity	repet	variance
 NR_033708.1|non-coding_RNA|KIAA0495|Nosynon	NR_037867.1|long_non-coding_RNA|MIR3945HG|Nosynon	86.720	1	0.000
 NR_132742.1|long_non-coding_RNA|MIR34AHG|Nosynon	NR_132742.1|long_non-coding_RNA|MIR34AHG|Nosynon	100.000	1	0.000
 NR_132742.1|long_non-coding_RNA|MIR34AHG|Nosynon	NR_038862.1|non-coding_RNA|LOC339902|Nosynon	92.090	1	0.000

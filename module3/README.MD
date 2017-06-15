@@ -48,6 +48,10 @@ ftp://ftp.ncbi.nlm.nih.gov/genomes/Homo_sapiens/mapview/
 		- **float** for numeric columns
 		- **string** for non-numeric columns, or a for a column named "label"
 		
+
+
+
+[NWB files specification](http://nwb.slis.indiana.edu/software.html)
 		
 ## Clustering ([2017-06-02 folder](20170602))	
 

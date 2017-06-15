@@ -24,7 +24,33 @@ plot.length.histogram(n.interactions.dataset, 25)
 dev.off()
 #plot(x=n.interactions.dataset$interactions, n.interactions.dataset$mean.query.length, log = "xy")
 
-k <- 5
+## <!-- Code provided by J.Murillo
+# wss<- (nrow(scores[1:199, ]-1)*sum(apply(scores[1:199, ], 2, var)))
+# for (i in 2:15)
+#   wss[i] <- sum(kmeans(scores[200:397, ], centers = i)$withinss)
+# plot(1:15, wss, type ="b", xlab = "Number of cluster", ylab = "withinss groups sum of error squares")
+# 
+# library(vegan)
+# fit <- cascadeKM(scale(scores[1:199,], center =  TRUE, scale = TRUE), 1, 10, iter = 1000)
+# plot(fit, sortg = TRUE, grpmts.plot = TRUE)
+# calinski.best <- as.numeric(which.max(fit$results[2,]))
+# calinski.best -->
+d<-n.interactions.dataset[,c(8,9)]
+wss <- array(NA, 15)
+for (i in 2:15)
+    wss[i] <- sum(kmeans(n.interactions.dataset, centers = i)$withinss)
+jpeg("images/sumofsquaresVSnumberofgroups.jpg")
+  plot(1:15, wss, type ="b", xlab = "Number of cluster", ylab = "withinss groups sum of error squares")
+dev.off()
+
+library(vegan)
+fit <- cascadeKM(scale(n.interactions.dataset, center =  TRUE, scale = TRUE), 1, 10, iter = 1000)
+jpeg("images/kalinskicriterion.jpg")
+  plot(fit, sortg = TRUE, grpmts.plot = TRUE)
+dev.off()
+
+
+k <- 6
 d<-n.interactions.dataset[,c(8,9)]
 d <- as.data.frame(d)
 kmeans.clustering <- kmeans(d, centers = k)
