@@ -125,7 +125,7 @@ for (i in 1:k.f){
   library(colorspace)
   n.items[i] <- sum(kmeans.clustering.filtered$cluster==i)
   jpeg(paste("images/clusters/filtered/cluster", i, "_", n.items[i] , "items.jpg"))
-  plot(filtered.dataset[, c(2,5)], 
+  plot(filtered.dataset[, c(2,4)], 
        col = rainbow_hcl(2)[((kmeans.clustering.filtered$cluster == i) + 1)], 
        log = "xy",
        main = (paste("Cluster", i, ": ", n.items[i] , " items")),

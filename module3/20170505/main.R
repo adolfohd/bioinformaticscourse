@@ -3,40 +3,61 @@ setwd("~/code/doc/bioinformaticscourse/module3/20170505")
 rm(list = ls())
 # source("~/code/fito_lib/r/pkgtest.R")
 
-# rna.q           <- readLines("../data/humangenome/rna.q")
-rna.q           <- readLines("rna.q")
-# seq.gene.md           <- read.csv("../data/humangenome/seq_gene.md", sep = "\t")
-seq.gene.md           <- read.csv("seq_gene.md", sep = "\t")
+# rna.q           <- readLines("../data/humangenome/rna.q", sep = "\t")
+rna.q           <- read.csv("../data/humangenome/rna.q", sep = "\t")
+# rna.q           <- readLines("rna.q")
+seq.gene.md           <- read.csv("../data/humangenome/seq_gene.md", sep = "\t")
+# seq.gene.md           <- read.csv("seq_gene.md", sep = "\t")
 
 
-non.coding.rna.brute  <- rna.q[grepl("non-coding RNA", rna.q, fixed = T)]
+non.coding.rna.rows  <- which(grepl("non-coding RNA", rna.q$defline, fixed = T))
 
+'
 library(stringr)
-gene.ids <- str_extract(non.coding.rna.brute, "(?<=GeneID:)\\d+")
-gene.info <- str_extract(non.coding.rna.brute, "([^\t]*){1}$")
+gene.ids <- str_extract(rna.q[non.coding.rna.rows,]$gene_id, "(?<=GeneID:)\\d+")
+gene.ids <- rna.q[non.coding.rna.rows,]$gene_id
+gene.info <- rna.q[non.coding.rna.rows,]$defline
+'
 
-non.coding.rna <- as.data.frame(matrix(c(gene.ids, gene.info), ncol = 2, byrow = F))
-colnames(non.coding.rna) <- c("gene.id", "gene.info")
-head(non.coding.rna)
+non.coding.rna <- rna.q[non.coding.rna.rows, c(1,5,7,10)]
+
+ncNRA <- non.coding.rna[ order(non.coding.rna[,2], -non.coding.rna[,3]), ]
+
+unique.ncNRA.rows <- array(NA, length(unique(ncNRA$gene_id)))
+
+unique.ncNRA.rows[1] <- 1
+unique.index <- 1
+last.unique <- ncNRA$gene_id[unique.index]
+
+gene.ids <- as.character(ncNRA$gene_id)
+last.unique <- gene.ids[unique.index]
+for (i in 2:nrow(ncNRA)){
+  if (gene.ids[i] != last.unique){
+    unique.index <- unique.index + 1
+    unique.ncNRA.rows[unique.index] <- i
+    last.unique <- ncNRA$gene_id[i]
+  }
+}
+ncNRA.unique <- ncNRA[unique.ncNRA.rows,]
+
+seq.gene.md.relevant <- seq.gene.md[
+  grepl("^GENE", seq.gene.md$feature_type) &
+    grepl("^GRCh38.", seq.gene.md$group_label),] 
 
 noncodingrna.geneinfoindexes <- array()
 pb <- txtProgressBar(min = 0, max = nrow(non.coding.rna), style = 3)
 
-seq.gene.md.relevant <- seq.gene.md[
-    grepl("^GENE", seq.gene.md$feature_type) &
-    grepl("^GRCh38.", seq.gene.md$group_label),] 
-
-
-test <- array()
-# for (i in 1:nrow(non.coding.rna)){
-for (i in 1:2){
-    query.string <- paste("GeneID:", non.coding.rna$gene.id[i], "$", sep="")
-    print(query.string)
+# test <- array()
+for (i in 1:nrow(non.coding.rna)){
+# for (i in 1:2){
+    query.string <- paste(ncNRA.unique$gene_id[i], "$", sep="")
+    # query.string <- as.character(ncNRA.unique$gene_id[i])
+    # print(query.string)
     found.gene <-    which(grepl(    query.string,      seq.gene.md.relevant$feature_id))
-    print(found.gene)
+    # print(found.gene)
   if (length(found.gene)!=0){
-    # noncodingrna.geneinfoindexes[i] <- found.gene
-    test[i] <- found.gene
+    noncodingrna.geneinfoindexes[i] <- found.gene
+    # test[i] <- found.gene
     # print(noncodingrna.geneinfoindexes[i])
   }
   Sys.sleep(0.1)
@@ -48,6 +69,10 @@ close(pb)
 # Let's generate the dataset we are interested in: "old" genome sequence information of noncoding genes. 
 noncodingrna.geneinfo <- seq.gene.md.relevant[noncodingrna.geneinfoindexes,]
 
+write.csv(noncodingrna.geneinfo, "ncNRA.seqgene.csv")
+
+
+#####################################################
 
 # Now we need to take only the distances
 
@@ -59,7 +84,7 @@ noncodingrna.positioninfo <- noncodingrna.geneinfo[,positioninfo.columns]
 
 noncodinggenes.length = as.numeric(noncodingrna.positioninfo[,"chr_stop"]) - 
                         as.numeric(noncodingrna.positioninfo[,"chr_start"])
-colnames(noncodinggenes.length) <- "chr_length"
+# colnames(noncodinggenes.length) <- "chr_length"
 noncodingrna.positioninfo$chr_length <- noncodinggenes.length
 head(noncodingrna.positioninfo)
 
@@ -113,7 +138,7 @@ noncodingrna.positioninfo$chromosome <- factor(noncodingrna.positioninfo$chromos
 n.intervals <- 100
 maximum.length  <- max(noncodingrna.positioninfo$chr_length, na.rm = T)
 minimum.length  <- min(noncodingrna.positioninfo$chr_length, na.rm = T)
-length.range <- max_length - min_length
+length.range <- maximum.length - minimum.length
 step.size    <- length.range/n.intervals
 
 library(ggplot2) #load the ggplot2 graph package
@@ -129,7 +154,7 @@ ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) +
 # going to compute the histogram in lengths in steps of only 100, up to 10,000.
 
 n.intervals <- 30
-maximum.length <- 20000
+maximum.length <- 30000
 minimum.length <- 0
 
 length.range <- maximum.length - minimum.length
