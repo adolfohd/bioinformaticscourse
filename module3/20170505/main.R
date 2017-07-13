@@ -74,6 +74,8 @@ write.csv(noncodingrna.geneinfo, "ncNRA.seqgene.csv")
 
 #####################################################
 
+noncodingrna.geneinfo <- read.csv("ncNRA.seqgene.csv")
+
 # Now we need to take only the distances
 
 positioninfo.columns = c("feature_id", "chromosome", "chr_start", 
@@ -179,8 +181,8 @@ plot.colors <- c("#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C
 "#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", 
 "#8A7C64")
 
-jpeg('images/histogram.jpg', width = 8, height = 8, units = 'in', res = 300)
-# svg('images/histogram.svg')
+# jpeg('images/histogram.jpg', width = 8, height = 8, units = 'in', res = 300)
+svg('images/histogram.svg')
 ggplot(noncodingrna.positioninfo, aes(x=chr_length, fill=factor(chromosome))) + 
   geom_histogram(
     breaks=breaks.plot,

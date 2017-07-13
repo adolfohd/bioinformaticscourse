@@ -113,8 +113,10 @@ for (i in 1:k){
 best.cluster <- readline("Please analize the plots in images/clusters/, and input the label of one chosen cluster : \n") 
 filtered.dataset <- n.interactions.dataset[kmeans.clustering$cluster==best.cluster,]
 
-d.clustered <- d
+d.clustered <- n.interactions.dataset
 d.clustered$cluster <- kmeans.clustering$cluster
+write.csv(d.clustered, "blast.result.genes.clusters.csv")
+
 write.csv(filtered.dataset, "filtered.dataset.csv")
                                                                                                   
 '
