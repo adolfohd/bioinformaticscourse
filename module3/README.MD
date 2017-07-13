@@ -161,7 +161,7 @@ Figure XX shows clusters.
 
 
 [genebank]:ftp://ftp.ncbi.nlm.nih.gov/genbank
-[ncRNA_Chr]:20170505/images/histogram.svg
+[ncRNA_Chr]:20170505/images/histogram.jpg
 [interHist]:20170602/images/histograms/interaction.histogram.jpg
 [lenHist]:20170602/images/histograms/length.histogram.jpg
 [calinski]:20170602/images/kalinskicriterion.jpg
