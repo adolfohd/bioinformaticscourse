@@ -1,7 +1,12 @@
 rm(list = ls())
 setwd("/media/fito/Windows/Users/fitoh/Documents/code/doc/bioinformaticscourse/module3/20170602")
 
-blast.result <- read.csv("data/resultblast_withcolumnames", sep = "\t")
+# blast.result <- read.csv("data/resultblast_withcolumnames", sep = "\t")
+blast.result <- read.csv("data/c.resultblast.txt", sep = "\t", header = F)
+colnames(blast.result) <- c("query",	"subject",	"%id",	"alignment.length",	"mismatches",	"gap.openings",	"query.start",	"query.end",	"subject.start",	"subject.end",	"E.value",	"bit.score")
+
+
+
 source("get.interactions.dataset.r")
 n.interactions.dataset <- get.interactions.dataset(blast.result)
 
@@ -36,22 +41,31 @@ dev.off()
 # plot(fit, sortg = TRUE, grpmts.plot = TRUE)
 # calinski.best <- as.numeric(which.max(fit$results[2,]))
 # calinski.best -->
-d<-n.interactions.dataset[,c(8,9)]
-wss <- array(NA, 15)
-for (i in 2:15)
-    wss[i] <- sum(kmeans(n.interactions.dataset, centers = i)$withinss)
+d<-n.interactions.dataset[,-c(8,9,10)]
+d<- d[!rowSums(! sapply(d, is.finite)),] # remove non numericals
+d <- scale(d, center =  TRUE, scale = TRUE)
+'
+The centering is done by subtracting the column means (omitting NAs) of the dataset from theircorresponding columns.
+The scaling is done by dividing the (centered) columns of the dataset by their standard deviations.
+'
+
+
+max.clusters <- 20
+wss <- array(NA, max.clusters)
+for (i in 2:max.clusters)
+    wss[i] <- sum(kmeans(d, centers = i)$withinss)
 jpeg("images/sumofsquaresVSnumberofgroups.jpg")
-  plot(1:15, wss, type ="b", xlab = "Number of clusters", ylab = "withinss groups sum of error squares")
+  plot(1:max.clusters, wss, type ="b", xlab = "Number of clusters", ylab = "withinss groups sum of error squares")
 dev.off()
 
 library(vegan)
-fit <- cascadeKM(scale(d, center =  TRUE, scale = TRUE), 1, 10, iter = 1000)
+fit <- cascadeKM(d, 1, max.clusters, iter = 1000)
 jpeg("images/kalinskicriterion.jpg")
   plot(fit, sortg = TRUE, grpmts.plot = TRUE)
 dev.off()
 
 
-k <-6 # Best K accorrding to both methods
+k <-12 # Best K accorrding to both methods
 d <- as.data.frame(d)
 # d <- n.interactions.dataset[,2:8]
 kmeans.clustering <- kmeans(d, centers = k)
@@ -70,7 +84,7 @@ plot(n.interactions.dataset[,c(1,4)], col= rainbow_hcl(k)[kmeans.clustering$clus
      ylab = ("Average Length")
 )
 legend("topright", pch=16, col=rainbow_hcl(k),
-       legend=1:k)
+       legend=1:k, title = "cluster")
 dev.off()
 
 # points(kmeans.clustering$centers, col=1:5,pch=8,cex=1)
@@ -98,8 +112,11 @@ for (i in 1:k){
 
 best.cluster <- readline("Please analize the plots in images/clusters/, and input the label of one chosen cluster : \n") 
 filtered.dataset <- n.interactions.dataset[kmeans.clustering$cluster==best.cluster,]
-write.csv(filtered.dataset, "filtered.dataset.csv")
 
+d.clustered <- d
+d.clustered$cluster <- kmeans.clustering$cluster
+write.csv(filtered.dataset, "filtered.dataset.csv")
+                                                                                                  
 '
 # Now we need to look for these IDs in the next source file ???
 source.cytos.dataset <- read.csv("../20170525/reference/blastresumen.cytos.txt", sep = "\t")

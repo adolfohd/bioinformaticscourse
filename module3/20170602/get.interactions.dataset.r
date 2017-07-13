@@ -14,7 +14,7 @@ get.interactions.dataset <- function(blast.result){
   for ( i in 1:n){
     same.level <- (blast.result$query == levels(blast.result$query)[i])
     interactions[i]        <- sum(same.level)
-    mean.similarity[i]     <- sum(as.numeric(blast.result$X.id             [same.level])) / interactions[i]
+    mean.similarity[i]     <- sum(as.numeric(blast.result$`%id`           [same.level])) / interactions[i]
     mean.expected.value[i] <- sum(as.numeric(blast.result$E.value          [same.level])) / interactions[i]
     mean.query.length[i]   <- sum(as.numeric(blast.result$alignment.length [same.level])) / interactions[i]
     mean.mismatches[i]     <- sum(as.numeric(blast.result$mismatches       [same.level])) / interactions[i]
