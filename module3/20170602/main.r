@@ -72,12 +72,13 @@ kmeans.clustering <- kmeans(d, centers = k)
 
 # n.interactions.dataset <- n.interactions.dataset[order(kmeans.clustering$cluster, decreasing = T),]
 
+n.interactions.dataset$cluster <- kmeans.clustering$cluster
 
 # plot(kmeans.clustering)
 # Extract nodes with only one connection
 # plot(x = n.interactions.dataset$)
 library("colorspace")
-jpeg(paste("images/clusters/clustering.jpg"))
+'jpeg(paste("images/clusters/clustering.jpg"))
 plot(n.interactions.dataset[,c(1,4)], col= rainbow_hcl(k)[kmeans.clustering$cluster], log = "xy",
      main = "k-means clustering",
      xlab = ("Number of interactions"),
@@ -85,14 +86,65 @@ plot(n.interactions.dataset[,c(1,4)], col= rainbow_hcl(k)[kmeans.clustering$clus
 )
 legend("topright", pch=16, col=rainbow_hcl(k),
        legend=1:k, title = "cluster")
+dev.off()'
+
+#### tendency
+x.axis <- unique(as.numeric(as.character(n.interactions.dataset$interactions[n.interactions.dataset$cluster!=3])))
+y.axis <- array(NA, length(x.axis))
+
+for (i in 1: length(x.axis)){
+  equal.interactions <- (n.interactions.dataset$interactions == x.axis[i] ) # && ( ((n.interactions.dataset$cluster)) != 3 )
+  y.axis[i] <- sum(n.interactions.dataset$mean.query.length[equal.interactions]) / sum(equal.interactions)
+}
+
+plot(x.axis, y.axis, log = "xy")
+
+average.lengths <- matrix(NA, 0,0)
+average.lengths$n.interactions <- as.numeric(x.axis)
+average.lengths$average.length <- as.numeric(y.axis)
+
+average.lengths <- as.data.frame(average.lengths)
+
+write.csv(average.lengths, "averagelengths.csv")
+
+library(ggplot2)
+plot.colors <- c("#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C", "#CBD588", "#5F7FC7", 
+                 "#673770", "#D3D93E", "#38333E", "#508578", "#D7C1B1", "#689030", "#AD6F3B", "#CD9BCD", 
+                 "#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", 
+                 "#8A7C64")
+
+jpeg(paste("images/clusters/clustering.jpg"), width = 1600, height = 1200, res = 300)
+ggplot(n.interactions.dataset, aes(x=interactions))+ 
+  # scale_fill_manual(values = plot.colors, drop = F) +
+  geom_point(aes(y=mean.query.length, color= factor(cluster)), size= 0.7)+
+  
+  geom_point(data = average.lengths, mapping = aes(x= n.interactions, y= average.length), size = 0.01) +
+  geom_smooth(
+    data = average.lengths, 
+    mapping = aes(x= n.interactions, y= average.length, size = "Linear\ntrend"), 
+    method = "lm") +
+  labs(color = "Cluster", size = "")+
+  scale_colour_manual(name="Cluster", values = plot.colors[13:1]) +
+  scale_x_log10()+
+  scale_y_log10() +
+  ggtitle("k-means clustering") +
+  xlab("Number of interactions") + ylab("Average Length")
 dev.off()
+
+
+
+####
+
+
+
+
 
 # points(kmeans.clustering$centers, col=1:5,pch=8,cex=1)
 
 n.items <- array(NA, k)
 for (i in 1:k){
   n.items[i] <- sum(kmeans.clustering$cluster==i)
-  jpeg(paste("images/clusters/cluster", i, "_", n.items[i] , "items.jpg"))
+  jpeg(paste("images/clusters/cluster", sprintf("%02d", i), "_", n.items[i] , "items.jpg"), width = 1600, height = 1200, res = 250)
   plot(n.interactions.dataset[, c(1,4)], 
        col = rainbow_hcl(2)[((kmeans.clustering$cluster == i) + 1)], 
        log = "xy",
